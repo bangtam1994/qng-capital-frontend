@@ -1,0 +1,1 @@
+# qng-capital-frontend
