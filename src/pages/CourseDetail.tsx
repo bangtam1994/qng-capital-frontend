@@ -5,7 +5,7 @@ import Picture from "../assets/phone_qng.png";
 import StripeCheckout from "../components/Course/Checkout";
 // Styled components
 const ImageContainer = styled(Box)({
-  minWidth: "600px",
+  //   width: { md: "600px", xs: "400px" },
   height: "600px",
 });
 
@@ -57,7 +57,11 @@ const CourseDetail: React.FC<{ type: string }> = ({ type }) => {
 
   return (
     <Container>
-      <Box display="flex" flexDirection={{ md: "row", xs: "column" }}>
+      <Box
+        display="flex"
+        flexDirection={{ md: "row", xs: "column" }}
+        gap={{ md: "3rem", xs: "0.5rem" }}
+      >
         <ImageContainer>
           <img
             src={Picture}
@@ -67,11 +71,11 @@ const CourseDetail: React.FC<{ type: string }> = ({ type }) => {
           />
         </ImageContainer>
 
-        <ContentContainer>
+        <ContentContainer textAlign={{ md: "start", xs: "center" }}>
           <Typography variant="h4" gutterBottom>
             {title}
           </Typography>
-          <Typography variant="body1" paragraph>
+          <Typography variant="body1" gutterBottom>
             {description}
           </Typography>
           <Typography variant="h4" color="primary" gutterBottom>
