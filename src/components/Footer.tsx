@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Typography, IconButton } from "@mui/material";
-import { Facebook, Twitter, Instagram } from "@mui/icons-material";
+import { YouTube, Telegram, Instagram } from "@mui/icons-material";
 
 const Footer: React.FC = () => {
   return (
@@ -18,13 +18,22 @@ const Footer: React.FC = () => {
           © {new Date().getFullYear()} QNG Capital. All rights reserved.
         </Typography>
         <Box sx={{ mt: 1 }}>
-          <IconButton color="primary" href="https://facebook.com">
-            <Facebook />
+          <IconButton
+            color="primary"
+            onClick={() => window.open("https://www.youtube.com/@QngCapital")}
+          >
+            <YouTube />
           </IconButton>
-          <IconButton color="primary" href="https://twitter.com">
-            <Twitter />
+          <IconButton
+            color="primary"
+            onClick={() => window.open("https://t.me/qngcapital")}
+          >
+            <Telegram />
           </IconButton>
-          <IconButton color="primary" href="https://instagram.com">
+          <IconButton
+            color="primary"
+            onClick={() => window.open("https://www.instagram.com/qngcapital")}
+          >
             <Instagram />
           </IconButton>
         </Box>

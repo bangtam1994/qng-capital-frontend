@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
-import HeroBack from "../assets/hero_back.png";
+import HeroBack from "../../assets/hero_back.png";
+import CustomButton from "../Button";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -90,9 +91,9 @@ const Hero = () => {
             {subtitles[currentSubtitleIndex]}
           </motion.span>
         </Typography>
-        <Button variant="contained" color="primary">
+        <CustomButton variant="contained" color="primary">
           Découvrir les formations
-        </Button>
+        </CustomButton>
       </Box>
       <Box sx={{ position: "absolute", right: 0, top: 0, zIndex: 1 }}>
         <img

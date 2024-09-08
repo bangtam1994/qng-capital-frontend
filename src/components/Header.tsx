@@ -80,7 +80,12 @@ const Header: React.FC = () => {
             <Button
               key={page}
               onClick={() => navigate(page)}
-              sx={{ my: 2, display: "block", letterSpacing: ".2rem" }}
+              sx={{
+                my: 2,
+                display: "block",
+                letterSpacing: ".2rem",
+                marginRight: "50px",
+              }}
             >
               {t(page).toUpperCase()}
             </Button>

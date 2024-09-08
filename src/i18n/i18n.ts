@@ -13,6 +13,15 @@ const resources = {
       subtitle_message: "Tranform chaos to opportunities",
       subtitle_message_2: "Become a Trader Pro",
       subtitle_message_3: "Catch the signals, maximize the profits",
+      offers: {
+        title: "Our offers",
+        cta: "Apply",
+        basic: {
+          name: "Basic",
+          price: "Price",
+          caption: "The basics of trading",
+        },
+      },
     },
   },
   fr: {
@@ -26,6 +35,25 @@ const resources = {
       subtitle_message: "Transforme le chaos en opportunité",
       subtitle_message_2: "Deviens un trader pro",
       subtitle_message_3: "Attrape les signaux, maximise tes profits",
+      offers: {
+        title: "Nos offres",
+        cta: "Choisir",
+        basic: {
+          name: "Basic",
+
+          caption: "Les bases du trading",
+        },
+        premium: {
+          name: "Premium",
+
+          caption: "Devenir un trader confirmé",
+        },
+        gold: {
+          name: "Gold",
+
+          caption: "Devenez un expert, apprenez de plus grands",
+        },
+      },
     },
   },
 };

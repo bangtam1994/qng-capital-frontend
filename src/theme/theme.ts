@@ -15,14 +15,14 @@ const theme = createTheme({
       contrastText: "#e0f3f2",
     },
     background: {
-      default: "#ffffff", // Fond principal
-      paper: "#f5f5f5", // Fond des éléments en papier (comme les cartes)
+      default: "#ffffff",
+      paper: "#f5f5f5",
     },
   },
   typography: {
-    fontFamily: ["Inter"].join(","),
+    fontFamily: ["Raleway", "Inter"].join(","),
     allVariants: {
-      fontFamily: "Inter",
+      fontFamily: "Raleway",
       textTransform: "none",
     },
   },
