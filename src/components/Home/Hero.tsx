@@ -22,7 +22,7 @@ const Hero = () => {
       );
     }, 2000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [subtitles.length]);
   return (
     <Box
       sx={{
