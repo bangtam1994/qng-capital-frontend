@@ -11,18 +11,23 @@ const bannerItems = [
   {
     text: "YouTube",
     image: youtubeImage,
-    link: "https://youtube.com/yourchannel",
+    link: "https://www.youtube.com/@QngCapital",
   },
   {
     text: "TradingView",
     image: tradingViewImage,
     link: "https://tradingview.com",
   },
-  { text: "Telegram", image: telegramImage, link: "https://t.me/yourchannel" },
+  { text: "Telegram", image: telegramImage, link: "https://t.me/qngcapital" },
   {
     text: "YouTube",
     image: youtubeImage,
-    link: "https://youtube.com/yourchannel",
+    link: "https://www.youtube.com/@QngCapital",
+  },
+  {
+    text: "TradingView",
+    image: tradingViewImage,
+    link: "https://tradingview.com",
   },
 ];
 

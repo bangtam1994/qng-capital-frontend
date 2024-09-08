@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import CustomButton from "../Button";
 import CenteredContainer from "../CustomContainer";
 import theme from "../../theme/theme";
+import { useNavigate } from "react-router-dom";
 
 const SectionContainer = styled(Box)({
   textAlign: "center",
@@ -23,6 +24,7 @@ const CardContainer = styled(Box)({
   display: "flex",
   justifyContent: "center",
   gap: "4rem",
+  flexWrap: "wrap",
 });
 
 const Card = styled(Box, { shouldForwardProp: (prop) => prop !== "color" })<{
@@ -49,6 +51,7 @@ const Card = styled(Box, { shouldForwardProp: (prop) => prop !== "color" })<{
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
+  cursor: "pointer",
   transition: "transform 0.3s ease, box-shadow 0.3s ease",
   "&:hover": {
     transform: "translateY(-5px)",
@@ -97,14 +100,24 @@ const offers = [
 
 const CoursesSection: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <CenteredContainer>
-      <motion.div initial="hidden" animate="visible" variants={sectionVariants}>
+      <motion.div
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ duration: 0.3 }}
+        variants={sectionVariants}
+      >
         <SectionContainer>
           <Title>{t("offers.title")}</Title>
           <CardContainer>
             {offers.map((offer, index) => (
-              <Card key={index} type={offer.type}>
+              <Card
+                key={index}
+                type={offer.type}
+                onClick={() => navigate(`courses/${offer.type}`)}
+              >
                 <Box>
                   <Typography
                     variant="h5"

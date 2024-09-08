@@ -30,9 +30,11 @@ const Hero = () => {
         py: 6,
         width: "100%",
         display: "flex",
+        flexDirection: { md: "row", xs: "column" },
         alignItems: "center",
-        position: "relative",
+        position: { md: "relative", xs: "initial" },
         gap: "20px",
+        height: "70vh",
       }}
     >
       <Box
@@ -41,7 +43,7 @@ const Hero = () => {
           flexDirection: "column",
           alignItems: "start",
           textAlign: { xs: "center", md: "start" },
-          padding: "150px 80px",
+          padding: { md: "150px 80px", xs: "40px 40px" },
           zIndex: 1000,
         }}
       >
@@ -69,7 +71,7 @@ const Hero = () => {
               fontStyle: "initial",
               lineHeight: 1.2,
               fontSize: "80px",
-              textAlign: { xs: "center", md: "left" },
+              textAlign: { xs: "center" },
             }}
           >
             {t("welcome_message_next")}
@@ -78,7 +80,11 @@ const Hero = () => {
         <Typography
           variant="h5"
           color="textSecondary"
-          sx={{ marginBottom: "80px" }}
+          sx={{
+            marginBottom: "80px",
+            textAlign: { xs: "center" },
+            fontSize: { xs: "15px", md: 25 },
+          }}
         >
           <motion.span
             key={currentSubtitleIndex}
@@ -91,16 +97,29 @@ const Hero = () => {
             {subtitles[currentSubtitleIndex]}
           </motion.span>
         </Typography>
-        <CustomButton variant="contained" color="primary">
+        <CustomButton
+          variant="contained"
+          color="primary"
+          sx={{ margin: { xs: "0 auto", md: 0 } }}
+        >
           Découvrir les formations
         </CustomButton>
       </Box>
-      <Box sx={{ position: "absolute", right: 0, top: 0, zIndex: 1 }}>
+
+      <Box
+        sx={{
+          position: { md: "absolute", xs: "relative" },
+          right: { md: 0, xs: 100 },
+          top: 0,
+          zIndex: 1,
+          height: { md: 600, xs: 300 },
+        }}
+      >
         <img
           src={HeroBack}
           alt="Logo"
           style={{
-            height: "600px",
+            height: "100%",
           }}
         />
       </Box>
