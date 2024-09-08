@@ -57,7 +57,7 @@ const CourseDetail: React.FC<{ type: string }> = ({ type }) => {
 
   return (
     <Container>
-      <Box display="flex" flexDirection="row">
+      <Box display="flex" flexDirection={{ md: "row", xs: "column" }}>
         <ImageContainer>
           <img
             src={Picture}
