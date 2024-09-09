@@ -34,7 +34,7 @@ const Hero = () => {
         alignItems: "center",
         position: { md: "relative", xs: "initial" },
         gap: "20px",
-        height: "70vh",
+        height: { md: "70vh", xs: "auto" },
       }}
     >
       <Box

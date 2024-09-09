@@ -4,30 +4,53 @@ import {
   Toolbar,
   Typography,
   Box,
-  Menu,
-  MenuItem,
   Button,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Logo from "../assets/QNG_logo.svg";
 import { useTheme } from "@mui/material/styles";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import ContactsIcon from "@mui/icons-material/Contacts";
+import MenuIcon from "@mui/icons-material/Menu";
 
-const Header: React.FC = () => {
+interface Props {
+  window?: () => Window;
+}
+
+const Header: React.FC = (props: Props) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const pages = ["courses", "testimony", "contact"];
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isClosing, setIsClosing] = React.useState(false);
+
+  const handleDrawerClose = () => {
+    setIsClosing(true);
+    setMobileOpen(false);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleDrawerTransitionEnd = () => {
+    setIsClosing(false);
   };
+
+  const handleDrawerToggle = () => {
+    if (!isClosing) {
+      setMobileOpen(!mobileOpen);
+    }
+  };
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   const navigate = useNavigate();
   return (
@@ -36,7 +59,10 @@ const Header: React.FC = () => {
       sx={{ backgroundColor: "white", boxShadow: "none" }}
     >
       <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h6"
+          sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+        >
           <Link
             to="/"
             style={{
@@ -91,63 +117,105 @@ const Header: React.FC = () => {
             </Button>
           ))}
         </Box>
+
+        {/* MOBILE HEADER */}
         <Box
           sx={{
-            flexGrow: 1,
             display: {
               xs: "flex",
               md: "none",
               display: "flex",
               alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
             },
           }}
-          onClick={handleOpenNavMenu}
         >
-          <img
-            src={Logo}
-            alt="Logo"
+          <IconButton
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { md: "none" }, position: "fixed", left: 30 }}
+            color="primary"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Link
+            to="/"
             style={{
-              height: 80,
-            }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
+              display: "flex",
+              alignItems: "center",
               textDecoration: "none",
-              color: theme.palette.primary.main,
             }}
           >
-            QNG CAPITAL
-          </Typography>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
+            <img
+              src={Logo}
+              alt="Logo"
+              style={{
+                height: 80,
+              }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="#app-bar-with-responsive-menu"
+              sx={{
+                mr: 2,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                textDecoration: "none",
+                color: theme.palette.primary.main,
+              }}
+            >
+              QNG CAPITAL
+            </Typography>
+          </Link>
+
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={mobileOpen}
+            onTransitionEnd={handleDrawerTransitionEnd}
+            onClose={handleDrawerClose}
+            ModalProps={{
+              keepMounted: true,
             }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
+            sx={{
+              display: { xs: "block", md: "none" },
+              "& .MuiDrawer-paper": { boxSizing: "border-box", width: "50%" },
             }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-            sx={{ display: { xs: "block", md: "none" } }}
           >
-            {pages.map((page) => (
-              <MenuItem key={page} onClick={() => navigate(page)}>
-                <Typography sx={{ textAlign: "center" }}>{page}</Typography>
-              </MenuItem>
-            ))}
-          </Menu>
+            <List
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                marginTop: "3rem",
+                height: "100%",
+                gap: "2rem",
+              }}
+            >
+              {pages.map((page, index) => (
+                <ListItem
+                  key={page}
+                  disablePadding
+                  onClick={() => {
+                    navigate(page);
+                    handleDrawerClose();
+                  }}
+                  sx={{ fontSize: "40px" }}
+                >
+                  <ListItemButton>
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <LocalOfferIcon /> : <ContactsIcon />}
+                    </ListItemIcon>
+                    <ListItemText primary={page} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Drawer>
         </Box>
       </Toolbar>
     </AppBar>
