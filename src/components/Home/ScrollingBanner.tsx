@@ -4,6 +4,11 @@ import { keyframes, styled } from "@mui/material/styles";
 import telegramImage from "../../assets/tele.png";
 import youtubeImage from "../../assets/youtube.png";
 import tradingViewImage from "../../assets/tradingview.svg";
+import ftmoImage from "../../assets/ftmo.webp";
+import alphacapital from "../../assets/alphacapital.png";
+import vantageImage from "../../assets/vantage.png";
+import metatrader from "../../assets/metatrader4.png";
+
 import theme from "../../theme/theme";
 
 const bannerItems = [
@@ -18,16 +23,25 @@ const bannerItems = [
     image: tradingViewImage,
     link: "https://tradingview.com",
   },
-  { text: "Telegram", image: telegramImage, link: "https://t.me/qngcapital" },
   {
-    text: "YouTube",
-    image: youtubeImage,
-    link: "https://www.youtube.com/@QngCapital",
+    text: "FTMO",
+    image: ftmoImage,
+    link: "https://ftmo.com/fr/",
   },
   {
-    text: "TradingView",
-    image: tradingViewImage,
-    link: "https://tradingview.com",
+    text: "alpha",
+    image: alphacapital,
+    link: "https://app.alphacapitalgroup.uk/",
+  },
+  {
+    text: "vantage",
+    image: vantageImage,
+    link: "https://www.vantagemarkets.com/fr/",
+  },
+  {
+    text: "metatrader",
+    image: metatrader,
+    link: "https://www.metatrader4.com/fr",
   },
 ];
 
