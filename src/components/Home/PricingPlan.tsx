@@ -19,6 +19,8 @@ import theme from "../../theme/theme";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../Button";
 import { useTranslation } from "react-i18next";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
 const PricingPlans: React.FC = () => {
   const [pricingOption, setPricingOption] = useState<"Mensuel" | "Annuel">(
     "Mensuel"
@@ -73,7 +75,7 @@ const PricingPlans: React.FC = () => {
               variant="outlined"
               onClick={() => navigate(`courses/${plan.type}`)}
               sx={{
-                minWidth: "280px",
+                width: "340px",
                 maxWidth: "350px", // Adjust width here
                 margin: "0 auto", // Center the card in the grid cell
                 borderRadius: "16px",
@@ -86,7 +88,9 @@ const PricingPlans: React.FC = () => {
                     ? "transparent"
                     : `1px solid ${theme.palette.primary.light}`,
                 backgroundColor:
-                  plan.type === "premium" ? "#e8f5e9" : "#ffffff",
+                  plan.type === "premium"
+                    ? theme.palette.secondary.light
+                    : "#ffffff",
                 transition:
                   "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
                 "&:hover": {
@@ -107,7 +111,7 @@ const PricingPlans: React.FC = () => {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "space-between",
+                    justifyContent: "space-center",
                     height: "500px",
                   }}
                 >
@@ -165,7 +169,14 @@ const PricingPlans: React.FC = () => {
 
                   <List sx={{ marginTop: 2, marginBottom: 2 }}>
                     {plan.features.map((feature, index) => (
-                      <ListItem key={index}>
+                      <ListItem key={index} sx={{ paddingLeft: 0 }}>
+                        <CheckCircleIcon
+                          sx={{
+                            color: theme.palette.secondary.main,
+                            marginRight: 1,
+                          }}
+                        />
+
                         <ListItemText primary={feature} />
                       </ListItem>
                     ))}
