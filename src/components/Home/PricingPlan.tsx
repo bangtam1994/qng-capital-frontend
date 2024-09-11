@@ -89,8 +89,12 @@ const PricingPlans: React.FC = () => {
                     : `1px solid ${theme.palette.primary.light}`,
                 backgroundColor:
                   plan.type === "premium"
-                    ? theme.palette.secondary.light
+                    ? theme.palette.secondary.main
                     : "#ffffff",
+                color:
+                  plan.type === "premium"
+                    ? theme.palette.secondary.contrastText
+                    : theme.palette.primary.main,
                 transition:
                   "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
                 "&:hover": {
@@ -126,10 +130,6 @@ const PricingPlans: React.FC = () => {
                       component="div"
                       gutterBottom
                       sx={{
-                        color:
-                          plan.type === "premium"
-                            ? theme.palette.primary.dark
-                            : "#bbbbb",
                         fontWeight: plan.type === "premium" ? 700 : 300,
                       }}
                     >
@@ -137,7 +137,6 @@ const PricingPlans: React.FC = () => {
                     </Typography>
                     <Typography
                       variant="h4"
-                      color="text.primary"
                       sx={{
                         fontWeight: "bold",
                         marginBottom: 1,
@@ -149,7 +148,6 @@ const PricingPlans: React.FC = () => {
                     </Typography>
                     <Typography
                       variant="body2"
-                      color="text.secondary"
                       sx={{
                         fontSize: "0.75rem",
                         marginBottom: 1,
@@ -158,11 +156,7 @@ const PricingPlans: React.FC = () => {
                     >
                       {pricingOption === "Annuel" ? "par an" : "par mois"}
                     </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.primary"
-                      margin={"22px 0px"}
-                    >
+                    <Typography variant="body2" margin={"22px 0px"}>
                       {plan.description}
                     </Typography>
                   </Box>
@@ -172,7 +166,10 @@ const PricingPlans: React.FC = () => {
                       <ListItem key={index} sx={{ paddingLeft: 0 }}>
                         <CheckCircleIcon
                           sx={{
-                            color: theme.palette.secondary.main,
+                            color:
+                              plan.type === "premium"
+                                ? "white"
+                                : theme.palette.secondary.main,
                             marginRight: 1,
                           }}
                         />
@@ -182,7 +179,18 @@ const PricingPlans: React.FC = () => {
                     ))}
                   </List>
                 </CardContent>
-                <CustomButton variant="contained" color="primary">
+                <CustomButton
+                //   variant={plan.type === "premium" ? "contained" : "outlined"}
+                //   buttonType={plan.type === "premium" ? "primary" : "secondary"}
+                //   sx={{
+                //     backgroundColor:
+                //       plan.type === "premium" ? "white" : "secondary",
+                //     color:
+                //       plan.type === "premium"
+                //         ? theme.palette.primary.main
+                //         : "secondary",
+                //   }}
+                >
                   {t("offers.cta")}
                 </CustomButton>
               </Box>
