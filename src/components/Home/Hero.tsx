@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 // import HeroBack from "../../assets/hero_back.png";
 import CustomButton from "../Button";
-import Video from "../../assets/hero.mov";
+import Video from "../../assets/hero_2.mp4";
 const Hero = () => {
   const { t } = useTranslation();
   // const theme = useTheme();
