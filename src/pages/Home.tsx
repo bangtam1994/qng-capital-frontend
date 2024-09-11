@@ -3,6 +3,7 @@ import Hero from "../components/Home/Hero";
 import ScrollingBanner from "../components/Home/ScrollingBanner";
 import { Box } from "@mui/material";
 import CoursesSection from "../components/Home/CourseSection";
+import PricingPlans from "../components/Home/PricingPlan";
 
 const Home: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const Home: React.FC = () => {
       <Hero />
       <ScrollingBanner />
       <CoursesSection />
+      <PricingPlans />
     </Box>
   );
 };
