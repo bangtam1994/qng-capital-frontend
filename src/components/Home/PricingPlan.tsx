@@ -27,7 +27,7 @@ const PricingPlans: React.FC = () => {
   );
 
   const handlePricingChange = (
-    event: React.MouseEvent<HTMLElement>,
+    _event: React.MouseEvent<HTMLElement>,
     newPricingOption: "Mensuel" | "Annuel"
   ) => {
     if (newPricingOption !== null) {
