@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "@mui/material/styles";
+// import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
-import HeroBack from "../../assets/hero_back.png";
+// import HeroBack from "../../assets/hero_back.png";
 import CustomButton from "../Button";
-
+import Video from "../../assets/hero.mov";
 const Hero = () => {
   const { t } = useTranslation();
-  const theme = useTheme();
+  // const theme = useTheme();
   const subtitles = [
     t("subtitle_message"),
     t("subtitle_message_2"),
@@ -26,7 +26,8 @@ const Hero = () => {
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "#E1E3EA",
+        // theme.palette.background.paper,
         py: 6,
         width: "100%",
         display: "flex",
@@ -50,6 +51,7 @@ const Hero = () => {
         <Box
           sx={{
             marginBottom: "20px",
+            zIndex: 10000,
           }}
         >
           <Typography
@@ -111,17 +113,21 @@ const Hero = () => {
           position: { md: "absolute", xs: "relative" },
           right: { md: 0, xs: 100 },
           top: 0,
-          zIndex: 1,
-          height: { md: 600, xs: 300 },
+          zIndex: 9,
+          height: { md: "100%", xs: 300 },
+          width: { md: "50%" },
         }}
       >
-        <img
+        {/* <img
           src={HeroBack}
           alt="Logo"
           style={{
             height: "100%",
           }}
-        />
+        /> */}
+        <video autoPlay loop muted playsInline width="100%" height="100%">
+          <source src={Video} type="video/mp4" />
+        </video>
       </Box>
     </Box>
   );
