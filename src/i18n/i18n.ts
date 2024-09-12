@@ -5,7 +5,7 @@ const resources = {
   en: {
     translation: {
       home: "Home",
-      courses: "Courses",
+      plans: "Plans",
       contact: "Contact",
       testimony: "Testimonials",
       welcome_message: "Trade better,",
@@ -27,7 +27,7 @@ const resources = {
   fr: {
     translation: {
       home: "Accueil",
-      courses: "Abonnements",
+      plans: "Abonnements",
       contact: "Contact",
       testimony: "Témoignages",
       welcome_message: "Rejoins la",

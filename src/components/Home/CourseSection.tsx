@@ -98,7 +98,7 @@ const offers = [
   },
 ];
 
-const CoursesSection: React.FC = () => {
+const plansSection: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
@@ -116,7 +116,7 @@ const CoursesSection: React.FC = () => {
               <Card
                 key={index}
                 type={offer.type}
-                onClick={() => navigate(`courses/${offer.type}`)}
+                onClick={() => navigate(`plans/${offer.type}`)}
               >
                 <Box>
                   <Typography
@@ -163,4 +163,4 @@ const CoursesSection: React.FC = () => {
   );
 };
 
-export default CoursesSection;
+export default plansSection;

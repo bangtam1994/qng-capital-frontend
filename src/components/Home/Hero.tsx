@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 // import HeroBack from "../../assets/hero_back.png";
 import CustomButton from "../Button";
 import Video from "../../assets/hero_2.mp4";
+import theme from "../../theme/theme";
 const Hero = () => {
   const { t } = useTranslation();
   // const theme = useTheme();
@@ -26,8 +27,7 @@ const Hero = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#E1E3EA",
-        // theme.palette.background.paper,
+        backgroundColor: theme.palette.background.paper,
         py: 6,
         width: "100%",
         display: "flex",
@@ -35,7 +35,7 @@ const Hero = () => {
         alignItems: "center",
         position: { md: "relative", xs: "initial" },
         gap: "20px",
-        height: { md: "70vh", xs: "auto" },
+        height: { md: "80vh", xs: "auto" },
       }}
     >
       <Box
@@ -113,19 +113,12 @@ const Hero = () => {
         sx={{
           position: { md: "absolute", xs: "initial" },
           right: { md: 0, xs: 100 },
-          top: 0,
+          top: "10%",
           zIndex: 9,
-          height: { md: "100%", xs: 300 },
+          height: { md: "60%", xs: 300 },
           width: { md: "50%" },
         }}
       >
-        {/* <img
-          src={HeroBack}
-          alt="Logo"
-          style={{
-            height: "100%",
-          }}
-        /> */}
         <video autoPlay loop muted playsInline width="100%" height="100%">
           <source src={Video} type="video/mp4" />
         </video>

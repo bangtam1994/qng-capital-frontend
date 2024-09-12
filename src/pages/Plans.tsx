@@ -1,13 +1,15 @@
-import { Container, Box, Typography } from "@mui/material";
 import React from "react";
+// import CenteredContainer from "../components/CustomContainer";
 import { Outlet } from "react-router-dom";
 
-const Contact: React.FC = () => {
+import { Box, Container, Typography } from "@mui/material";
+
+const Plans: React.FC = () => {
   return (
     <Container>
       <Box sx={{ display: "flex", flexDirection: "column", padding: 10 }}>
         <Typography variant="h3" align="center" gutterBottom>
-          Contact
+          Nos offres
         </Typography>
         <Outlet />
       </Box>
@@ -15,4 +17,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact;
+export default Plans;

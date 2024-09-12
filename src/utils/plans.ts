@@ -1,5 +1,3 @@
-// utils/pricingPlans.ts
-
 export interface Plan {
   type: "basic" | "premium" | "gold";
   name: string;
@@ -7,6 +5,7 @@ export interface Plan {
   annualPrice: number;
   description: string;
   features: string[];
+  details?: { caption: string; picture: string };
 }
 
 export const plans: Plan[] = [
@@ -17,6 +16,11 @@ export const plans: Plan[] = [
     annualPrice: 199.99,
     description: "Le pack parfait pour débuter en trading.",
     features: ["Canal Télégram", "Signaux", "Coaching 2x/semaine"],
+    details: {
+      caption:
+        "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP",
+      picture: "src/assets/phone_qng.png",
+    },
   },
   {
     type: "premium",
@@ -30,6 +34,11 @@ export const plans: Plan[] = [
       "Signaux",
       "Coaching 2x/semaine",
     ],
+    details: {
+      caption:
+        "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP",
+      picture: "src/assets/phone_qng.png",
+    },
   },
   {
     type: "gold",
@@ -44,5 +53,10 @@ export const plans: Plan[] = [
       "Coaching 3x/semaine",
       "Accompagnement live",
     ],
+    details: {
+      caption:
+        "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP, Coaching 3x/semaine",
+      picture: "src/assets/phone_qng.png",
+    },
   },
 ];

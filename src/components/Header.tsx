@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -13,7 +13,7 @@ import {
   ListItemText,
   IconButton,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Logo from "../assets/QNG_logo.svg";
 import { useTheme } from "@mui/material/styles";
@@ -22,17 +22,17 @@ import ContactsIcon from "@mui/icons-material/Contacts";
 import MenuIcon from "@mui/icons-material/Menu";
 
 interface Props {
-  window?: () => Window;
+  windowProp?: () => Window;
 }
+const pages = ["plans", "testimony", "contact"];
 
-const Header: React.FC = (props: Props) => {
+const Header: React.FC = ({ windowProp }: Props) => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const pages = ["courses", "testimony", "contact"];
-
-  const { window } = props;
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -49,14 +49,49 @@ const Header: React.FC = (props: Props) => {
     }
   };
 
+  const interpolateColor = (scrollY: number) => {
+    const startColor = [225, 227, 234]; // RGB for theme paper background
+    const endColor = [255, 255, 255];
+
+    const progress = Math.min(scrollY / 200, 1); // Scroll range from 0 to 200px
+
+    const currentColor = startColor.map((start, i) =>
+      Math.round(start + (endColor[i] - start) * progress)
+    );
+
+    return `rgb(${currentColor.join(", ")})`;
+  };
+  const headerStyle =
+    location.pathname === "/"
+      ? {
+          backgroundColor: interpolateColor(scrollY),
+          transition: "background-color 0.3s ease",
+          boxShadow: scrollY > 10 ? "0px 2px 4px rgba(0, 0, 0, 0.1)" : "none",
+        }
+      : {
+          backgroundColor: "#FFFFFF",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+        };
   const container =
-    window !== undefined ? () => window().document.body : undefined;
+    windowProp !== undefined ? () => windowProp().document.body : undefined;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const navigate = useNavigate();
   return (
     <AppBar
       position="sticky"
-      sx={{ backgroundColor: "white", boxShadow: "none" }}
+      elevation={scrollY > 50 ? 4 : 0} // Add shadow only after scrolling
+      sx={headerStyle}
     >
       <Toolbar>
         <Typography
@@ -110,7 +145,7 @@ const Header: React.FC = (props: Props) => {
                 my: 2,
                 display: "block",
                 letterSpacing: ".2rem",
-                marginRight: "50px",
+                marginRight: "60px",
               }}
             >
               {t(page).toUpperCase()}
@@ -188,6 +223,7 @@ const Header: React.FC = (props: Props) => {
                 boxSizing: "border-box",
                 width: "70%",
                 padding: "0px 30px",
+                backgroundColor: "white",
               },
             }}
           >
