@@ -13,9 +13,10 @@ import {
   ToggleButtonGroup,
   ToggleButton,
   Box,
+  //   Button,
 } from "@mui/material";
 import { Plan, plans } from "../../utils/plans";
-import theme from "../../theme/theme";
+// import theme from "../../theme/theme";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../Button";
 import { useTranslation } from "react-i18next";
@@ -37,12 +38,24 @@ const PricingPlans: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  const notMainColor = "#F3F4F6";
+  const mainColor = "#0db595";
+  const backgroundColor = "#F3F4F6";
   return (
-    <Container>
-      <Typography variant="h3" align="center" gutterBottom>
+    <Container
+      sx={{
+        padding: "60px 0px",
+        // marginBottom: "60px",
+        backgroundColor: backgroundColor,
+        maxWidth: { md: "100vw" },
+        width: "100vw",
+        color: "black",
+      }}
+    >
+      <Typography variant="h3" align="center" fontWeight={700} gutterBottom>
         Nos offres du moment
       </Typography>
-      <Typography align="center" paragraph>
+      <Typography align="center" paragraph margin={4}>
         Choisissez votre abonnement à QNG Capital qui vous correspond le mieux,
         et faites monter votre capital aujourd'hui.
       </Typography>
@@ -50,16 +63,34 @@ const PricingPlans: React.FC = () => {
       {/* Toggle Button for Mensuel/Annuel Pricing */}
       <Typography align="center" paragraph sx={{ marginBottom: "36px" }}>
         <ToggleButtonGroup
-          color="secondary"
           value={pricingOption}
           exclusive
           onChange={handlePricingChange}
           aria-label="pricing option"
+          color="secondary"
         >
-          <ToggleButton value="Mensuel" aria-label="monthly pricing">
+          <ToggleButton
+            value="Mensuel"
+            aria-label="monthly pricing"
+            sx={{
+              //   backgroundColor: backgroundColor,
+              borderRadius: "24px 0px 0px 24px",
+              padding: "12px 22px",
+              //   color: "lightgrey",
+            }}
+          >
             Mensuel
           </ToggleButton>
-          <ToggleButton value="Annuel" aria-label="annual pricing">
+          <ToggleButton
+            value="Annuel"
+            aria-label="annual pricing"
+            sx={{
+              //   color: "lightgrey",
+              //   backgroundColor: "#3b5273",
+              borderRadius: " 0px 24px 24px 0px",
+              padding: "12px 22px",
+            }}
+          >
             Annuel
           </ToggleButton>
         </ToggleButtonGroup>
@@ -76,25 +107,18 @@ const PricingPlans: React.FC = () => {
               onClick={() => navigate(`courses/${plan.type}`)}
               sx={{
                 width: "340px",
-                maxWidth: "350px", // Adjust width here
-                margin: "0 auto", // Center the card in the grid cell
+                maxWidth: "350px",
+                margin: "0 auto",
                 borderRadius: "16px",
                 padding: "2rem",
-                border: plan.type === "premium" ? "none" : "1px solid #e0e0e0",
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
 
-                borderColor:
-                  plan.type === "premium"
-                    ? "transparent"
-                    : `1px solid ${theme.palette.primary.light}`,
-                backgroundColor:
-                  plan.type === "premium"
-                    ? theme.palette.secondary.main
-                    : "#ffffff",
-                color:
-                  plan.type === "premium"
-                    ? theme.palette.secondary.contrastText
-                    : theme.palette.primary.main,
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+                // borderColor: plan.type === "premium" ? mainColor : notMainColor,
+                border: `2px solid ${
+                  plan.type === "premium" ? mainColor : notMainColor
+                }`,
+                backgroundColor: notMainColor,
+                color: "black",
                 transition:
                   "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
                 "&:hover": {
@@ -102,6 +126,7 @@ const PricingPlans: React.FC = () => {
                   boxShadow: "0 8px 20px rgba(0, 0, 0, 0.3)",
                 },
                 textAlign: "center",
+                cursor: "pointer",
               }}
             >
               <Box
@@ -135,27 +160,56 @@ const PricingPlans: React.FC = () => {
                     >
                       {plan.name}
                     </Typography>
-                    <Typography
-                      variant="h4"
+
+                    {/* PRICE */}
+                    <Box
                       sx={{
-                        fontWeight: "bold",
-                        marginBottom: 1,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "baseline",
+                        mb: 2,
                       }}
                     >
-                      {pricingOption === "Annuel"
-                        ? plan.annualPrice
-                        : plan.monthlyPrice}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        fontSize: "0.75rem",
-                        marginBottom: 1,
-                      }}
-                      gutterBottom
-                    >
-                      {pricingOption === "Annuel" ? "par an" : "par mois"}
-                    </Typography>
+                      {" "}
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          textDecoration: "line-through",
+                          color:
+                            plan.type === "premium" ? notMainColor : "gray",
+                          mr: 1,
+                        }}
+                      >
+                        {(pricingOption === "Mensuel"
+                          ? Number(plan.monthlyPrice) * 1.2
+                          : Number(plan.annualPrice) * 1.2
+                        ).toFixed(2)}{" "}
+                        €
+                      </Typography>
+                      <Typography
+                        variant="h4"
+                        sx={{
+                          fontWeight: "bold",
+                          marginBottom: 1,
+                        }}
+                      >
+                        {pricingOption === "Annuel"
+                          ? plan.annualPrice
+                          : plan.monthlyPrice}{" "}
+                        €
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontSize: "0.75rem",
+                          marginBottom: 1,
+                        }}
+                        gutterBottom
+                      >
+                        {pricingOption === "Annuel" ? "/an" : "/mois"}
+                      </Typography>
+                    </Box>
+
                     <Typography variant="body2" margin={"22px 0px"}>
                       {plan.description}
                     </Typography>
@@ -166,10 +220,7 @@ const PricingPlans: React.FC = () => {
                       <ListItem key={index} sx={{ paddingLeft: 0 }}>
                         <CheckCircleIcon
                           sx={{
-                            color:
-                              plan.type === "premium"
-                                ? "white"
-                                : theme.palette.secondary.main,
+                            color: mainColor,
                             marginRight: 1,
                           }}
                         />
@@ -180,18 +231,19 @@ const PricingPlans: React.FC = () => {
                   </List>
                 </CardContent>
                 <CustomButton
-                //   variant={plan.type === "premium" ? "contained" : "outlined"}
-                //   buttonType={plan.type === "premium" ? "primary" : "secondary"}
-                //   sx={{
-                //     backgroundColor:
-                //       plan.type === "premium" ? "white" : "secondary",
-                //     color:
-                //       plan.type === "premium"
-                //         ? theme.palette.primary.main
-                //         : "secondary",
-                //   }}
+                  buttonType="secondary"
+                  variant="outlined"
+                  sx={{
+                    color: plan.type === "premium" ? notMainColor : mainColor,
+                    backgroundColor:
+                      plan.type === "premium" ? mainColor : notMainColor,
+                    border: `2px solid ${
+                      plan.type === "premium" ? mainColor : mainColor
+                    }`,
+                    fontWeight: 700,
+                  }}
                 >
-                  {t("offers.cta")}
+                  {t("offers.cta").toUpperCase()}
                 </CustomButton>
               </Box>
             </Card>

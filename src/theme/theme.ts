@@ -14,11 +14,13 @@ const theme = createTheme({
       dark: "#005344",
       contrastText: "#e0f3f2",
     },
+
     background: {
       default: "#ffffff",
       paper: "#f5f5f5",
     },
   },
+
   typography: {
     fontFamily: ["Raleway", "Inter"].join(","),
     allVariants: {

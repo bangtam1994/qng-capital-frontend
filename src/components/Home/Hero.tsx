@@ -84,8 +84,9 @@ const Hero = () => {
           color="textSecondary"
           sx={{
             marginBottom: "80px",
-            textAlign: { xs: "center" },
-            fontSize: { xs: "15px", md: 25 },
+            textAlign: { xs: "center", md: "left" },
+            fontSize: { xs: 18, md: 25 },
+            width: "100%",
           }}
         >
           <motion.span
@@ -94,7 +95,7 @@ const Hero = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -30, opacity: 0 }}
             transition={{ duration: 0.5 }}
-            style={{ position: "absolute" }}
+            // style={{ position: "absolute" }}
           >
             {subtitles[currentSubtitleIndex]}
           </motion.span>
@@ -110,7 +111,7 @@ const Hero = () => {
 
       <Box
         sx={{
-          position: { md: "absolute", xs: "relative" },
+          position: { md: "absolute", xs: "initial" },
           right: { md: 0, xs: 100 },
           top: 0,
           zIndex: 9,

@@ -78,7 +78,7 @@ const offers = [
   {
     type: "basic",
     price: "$50",
-    items: ["Canal Télégram", "E-book privé", "Signaux"],
+    items: ["Canal Télégram", "E-book privé", "Signaux", "Coaching 2x/semaine"],
   },
   {
     type: "premium",

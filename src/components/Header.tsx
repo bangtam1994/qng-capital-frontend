@@ -55,7 +55,7 @@ const Header: React.FC = (props: Props) => {
   const navigate = useNavigate();
   return (
     <AppBar
-      position="static"
+      position="sticky"
       sx={{ backgroundColor: "white", boxShadow: "none" }}
     >
       <Toolbar>
@@ -135,7 +135,7 @@ const Header: React.FC = (props: Props) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: "none" }, position: "fixed", left: 30 }}
+            sx={{ display: { md: "none" }, position: "fixed", left: 40 }}
             color="primary"
           >
             <MenuIcon />
@@ -184,7 +184,11 @@ const Header: React.FC = (props: Props) => {
             }}
             sx={{
               display: { xs: "block", md: "none" },
-              "& .MuiDrawer-paper": { boxSizing: "border-box", width: "50%" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: "70%",
+                padding: "0px 30px",
+              },
             }}
           >
             <List
