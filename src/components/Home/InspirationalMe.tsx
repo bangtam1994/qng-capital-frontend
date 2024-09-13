@@ -7,6 +7,9 @@ import { motion, useAnimation, useInView } from "framer-motion";
 const VideoContainer = styled(Box)({
   flex: 1,
   minWidth: "50%",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 const ContentContainer = styled(Box)({
@@ -42,14 +45,14 @@ const InspirationalMe = () => {
           display="flex"
           flexDirection={{ md: "row", xs: "column" }}
           gap={{ md: "3rem", xs: "2rem" }}
-          minHeight={"400px"}
-          padding={3}
+          minHeight={"380px"}
+          padding={2}
         >
           <VideoContainer>
             <iframe
               width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/k_XT_IUD6to?si=erCXN-TKv4hsXz8R"
+              height={"90%"}
+              src="https://www.youtube.com/embed/DfIs4DwNR9c?si=jnztLgAf28OLLE-P"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

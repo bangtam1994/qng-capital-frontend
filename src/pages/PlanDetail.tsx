@@ -49,7 +49,7 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
         >
           <ImageContainer>
             <img
-              src={import.meta.env.BASE_URL + data.details?.picture}
+              src={`${import.meta.env.BASE_URL}${data.details?.picture}`}
               height={"100%"}
               width={"100%"}
               style={{ objectFit: "contain" }}

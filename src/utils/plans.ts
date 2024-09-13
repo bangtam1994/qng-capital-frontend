@@ -11,7 +11,7 @@ export interface Plan {
 export const plans: Plan[] = [
   {
     type: "basic",
-    name: "Trader Base",
+    name: "QNG Signaux ™",
     monthlyPrice: 19.99,
     annualPrice: 199.99,
     description: "Le pack parfait pour débuter en trading.",
@@ -19,12 +19,12 @@ export const plans: Plan[] = [
     details: {
       caption:
         "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP",
-      picture: "src/assets/phone_qng.png",
+      picture: "assets/phone_qng.png",
     },
   },
   {
     type: "premium",
-    name: "Trader Premium",
+    name: "Académie Trading ™",
     monthlyPrice: 49.99,
     annualPrice: 499.99,
     description: "Idéal pour devenir un trader confirmé",
@@ -37,12 +37,12 @@ export const plans: Plan[] = [
     details: {
       caption:
         "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP",
-      picture: "src/assets/phone_qng.png",
+      picture: "assets/phone_qng.png",
     },
   },
   {
     type: "gold",
-    name: "Trader Gold",
+    name: "Masterclass ™",
     monthlyPrice: 99.99,
     annualPrice: 999.99,
     description: "Devenez un expert en bourse.",
@@ -56,7 +56,7 @@ export const plans: Plan[] = [
     details: {
       caption:
         "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP, Coaching 3x/semaine",
-      picture: "src/assets/phone_qng.png",
+      picture: "assets/phone_qng.png",
     },
   },
 ];
