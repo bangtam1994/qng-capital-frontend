@@ -12,6 +12,7 @@ import theme from "./theme/theme";
 import PlanDetail from "./pages/PlanDetail";
 import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import AboutMe from "./pages/AboutMe";
 
 // import Témoignages from "./pages/Témoignages";
 
@@ -29,6 +30,8 @@ const App: React.FC = () => {
               <Route path="gold" element={<PlanDetail type="gold" />} />
             </Route>
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about-me" element={<AboutMe />} />
+
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>

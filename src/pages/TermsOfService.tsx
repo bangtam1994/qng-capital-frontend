@@ -136,8 +136,8 @@ const TermsOfService: React.FC = () => {
         <Typography paragraph>
           Pour toute question concernant ces Conditions Générales ou nos
           services, veuillez nous contacter à :{" "}
-          <Link href="mailto:qhl.alexandre@gmail.com">
-            qhl.alexandre@gmail.com"
+          <Link href="mailto:pqhl.alexandre@gmail.com">
+            pqhl.alexandre@gmail.com"
           </Link>{" "}
           ou via notre formulaire de contact sur{" "}
           <Link href="/">notre site</Link>.

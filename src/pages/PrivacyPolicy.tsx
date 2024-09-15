@@ -98,10 +98,10 @@ const PrivaryPolicy: React.FC = () => {
         <Typography paragraph>
           Si vous avez des questions ou des préoccupations concernant cette
           Politique de Confidentialité, veuillez nous contacter à :{" "}
-          <Link href="mailto:qhl.alexandre@gmail.com">
-            qhl.alexandre@gmail.com"
-          </Link>{" "}
-          ou via notre formulaire de contact sur{" "}
+          <Link href="mailto:pqhl.alexandre@gmail.com">
+            pqhl.alexandre@gmail.com"
+          </Link>
+          ou via notre formulaire de contact sur
           <Link href="/">notre site</Link>.
         </Typography>
       </Box>

@@ -24,7 +24,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 interface Props {
   windowProp?: () => Window;
 }
-const pages = ["plans", "testimony", "contact"];
+const pages = [
+  { name: "plans", to: "plans" },
+  { name: "testimony", to: "testimony" },
+  { name: "contact", to: "contact" },
+  { name: "about me", to: "about-me" },
+];
 
 const Header: React.FC = ({ windowProp }: Props) => {
   const { t } = useTranslation();
@@ -139,8 +144,8 @@ const Header: React.FC = ({ windowProp }: Props) => {
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
           {pages.map((page) => (
             <Button
-              key={page}
-              onClick={() => navigate(page)}
+              key={page.name}
+              onClick={() => navigate(page.to)}
               sx={{
                 my: 2,
                 display: "block",
@@ -148,7 +153,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
                 marginRight: "60px",
               }}
             >
-              {t(page).toUpperCase()}
+              {t(page.name).toUpperCase()}
             </Button>
           ))}
         </Box>
@@ -238,10 +243,10 @@ const Header: React.FC = ({ windowProp }: Props) => {
             >
               {pages.map((page, index) => (
                 <ListItem
-                  key={page}
+                  key={page.name}
                   disablePadding
                   onClick={() => {
-                    navigate(page);
+                    navigate(page.to);
                     handleDrawerClose();
                   }}
                   sx={{ fontSize: "40px" }}
@@ -250,7 +255,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
                     <ListItemIcon>
                       {index % 2 === 0 ? <LocalOfferIcon /> : <ContactsIcon />}
                     </ListItemIcon>
-                    <ListItemText primary={page} />
+                    <ListItemText primary={page.name} />
                   </ListItemButton>
                 </ListItem>
               ))}
