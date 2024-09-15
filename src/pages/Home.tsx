@@ -5,6 +5,8 @@ import { Box } from "@mui/material";
 import PricingPlans from "../components/Home/PricingPlan";
 import InspirationalMe from "../components/Home/InspirationalMe";
 import FAQPage from "../components/Home/FAQ";
+import CTAEbook from "../components/Home/CTAebook";
+import TestimonialsCarousel from "../components/Home/Testimonials";
 
 const Home: React.FC = () => {
   return (
@@ -13,6 +15,8 @@ const Home: React.FC = () => {
       <ScrollingBanner />
       <PricingPlans />
       <InspirationalMe />
+      <CTAEbook />
+      <TestimonialsCarousel />
       <FAQPage />
     </Box>
   );

@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
-import { Box, Typography, Container } from "@mui/material";
+import React from "react";
+import { Box, Container, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-import { motion, useAnimation, useInView } from "framer-motion";
+import MotionWrapper from "../MotionWrapper";
 
 const VideoContainer = styled(Box)({
   flex: 1,
@@ -17,35 +17,14 @@ const ContentContainer = styled(Box)({
 });
 
 const InspirationalMe = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
-  const inView = useInView(ref, { once: true });
-
-  React.useEffect(() => {
-    if (inView) {
-      controls.start({ opacity: 1, y: 0 });
-    } else {
-      controls.start({ opacity: 0, y: 50 });
-    }
-  }, [inView, controls]);
   return (
-    <Container
-      sx={{
-        padding: "60px 0px",
-        color: "black",
-      }}
-    >
-      <motion.div
-        animate={controls}
-        initial={{ opacity: 0, y: 50 }}
-        transition={{ duration: 0.6 }}
-      >
+    <MotionWrapper>
+      <Container sx={{ height: "400px" }}>
         <Box
-          ref={ref}
           display="flex"
           flexDirection={{ md: "row", xs: "column" }}
           gap={{ md: "3rem", xs: "2rem" }}
-          minHeight={"380px"}
+          minHeight={"370px"}
           padding={2}
         >
           <VideoContainer>
@@ -79,8 +58,8 @@ const InspirationalMe = () => {
             </Typography>
           </ContentContainer>
         </Box>
-      </motion.div>
-    </Container>
+      </Container>
+    </MotionWrapper>
   );
 };
 

@@ -91,7 +91,7 @@ const PricingPlans: React.FC = () => {
         initial={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.6 }}
       >
-        <Typography variant="h3" align="center" fontWeight={700} gutterBottom>
+        <Typography variant="h2" align="center" fontWeight={700} gutterBottom>
           Nos offres du moment
         </Typography>
         <Typography align="center" paragraph margin={4}>

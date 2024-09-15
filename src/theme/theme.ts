@@ -27,6 +27,16 @@ const theme = createTheme({
       fontFamily: "Raleway",
       textTransform: "none",
     },
+
+    h1: { fontSize: "3.2rem", fontWeight: 700 },
+    h2: {
+      fontSize: "2.5rem",
+      fontWeight: 700,
+    },
+    h3: {
+      fontSize: "1.75rem",
+      fontWeight: 600,
+    },
   },
 });
 

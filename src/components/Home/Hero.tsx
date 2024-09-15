@@ -115,7 +115,7 @@ const Hero = () => {
           right: { md: 0, xs: 100 },
           top: "10%",
           zIndex: 9,
-          height: { md: "60%", xs: 300 },
+          height: { md: "80%", xs: 300 },
           width: { md: "50%" },
         }}
       >

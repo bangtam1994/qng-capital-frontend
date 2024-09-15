@@ -1,22 +1,23 @@
 export const faqData = [
   {
-    question: "What is trading?",
+    question: "Quels types de formations en trading proposez-vous ?",
     answer:
-      "Trading is the act of buying and selling financial assets, such as stocks, bonds, commodities, or currencies, with the goal of making a profit.",
+      "Je propose une gamme complète de formations en trading, incluant des cours pour les débutants, des stratégies avancées pour les traders expérimentés, et des formations spécialisées en trading d'actions, forex, et plus encore. Chaque cours est conçu pour vous aider à améliorer vos compétences et à atteindre vos objectifs financiers.",
   },
   {
-    question: "What is the difference between trading and investing?",
+    question: "Comment puis-je m'inscrire à une formation ?",
     answer:
-      "Trading involves buying and selling assets for short-term gains, while investing is about holding assets for the long term to build wealth gradually.",
+      "Vous pouvez vous inscrire à nos formations directement sur notre site web. Il vous suffit de choisir l'abonnement qui vous intéresse, de suivre les instructions pour l'inscription et le paiement, et vous recevrez un accès immédiat aux matériaux de formation. Nous acceptons divers modes de paiement pour votre commodité. Après validation, vous recevrez les détails d'accès à votre formation, que ce soit les signaux via Telegram, les sessions de coaching, ou le mentorat 1-to-1",
   },
   {
-    question: "What are trading signals?",
+    question:
+      "Quel est le niveau de support que je recevrai pendant la formation ?",
     answer:
-      "Trading signals are recommendations or alerts for buying or selling an asset based on specific criteria like technical analysis or market news.",
+      "Mes formations incluent un support complet via forums de discussion, sessions de questions-réponses en direct, et support par e-mail. Vous aurez également accès à une communauté de traders où vous pourrez échanger des idées et poser des questions. En fonction de chaque abonnement, des supports sont disponibles à votre convenance : sessions live via Zoom, coaching par moi-même en 1-to-1.",
   },
   {
-    question: "How much capital do I need to start trading?",
+    question: "Puis-je accéder au contenu des formations après leur fin ?",
     answer:
-      "The amount of capital needed to start trading varies, but many brokers allow you to begin with a small amount. It's important to start with an amount you can afford to lose.",
+      "Oui, vous aurez accès aux ressources et au contenu de votre formation même après la fin du programme. Pour les formations Basic, vous aurez accès aux signaux via Telegram tant que vous êtes abonné. Pour les formations Premium et Ultimate, vous pourrez consulter les enregistrements des sessions de coaching et les ressources supplémentaires à tout moment.",
   },
 ];

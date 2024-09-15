@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Typography, IconButton } from "@mui/material";
+import { Box, Container, Typography, IconButton, Link } from "@mui/material";
 import { YouTube, Telegram, Instagram } from "@mui/icons-material";
 
 const Footer: React.FC = () => {
@@ -37,6 +37,16 @@ const Footer: React.FC = () => {
             <Instagram />
           </IconButton>
         </Box>
+        <Link href="/terms-of-service" color="inherit" underline="none">
+          <Typography variant="body2" color="text.secondary">
+            Conditions Générales
+          </Typography>
+        </Link>
+        <Link href="/privacy-policy" color="inherit" underline="none">
+          <Typography variant="body2" color="text.secondary">
+            Politique de confidentialité
+          </Typography>
+        </Link>
       </Container>
     </Box>
   );

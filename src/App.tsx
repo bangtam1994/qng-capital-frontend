@@ -1,4 +1,6 @@
 import React from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -8,6 +10,9 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import Layout from "./components/Layout";
 import theme from "./theme/theme";
 import PlanDetail from "./pages/PlanDetail";
+import TermsOfService from "./pages/TermsOfService";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+
 // import Témoignages from "./pages/Témoignages";
 
 const App: React.FC = () => {
@@ -24,6 +29,8 @@ const App: React.FC = () => {
               <Route path="gold" element={<PlanDetail type="gold" />} />
             </Route>
             <Route path="/contact" element={<Contact />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
         </Layout>
       </Router>
