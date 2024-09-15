@@ -14,7 +14,8 @@ import Me2 from "../assets/me_2.jpg";
 const personalInfo = {
   name: "Alexandre Pham",
   title: "Trader Forex",
-  bio: `Passionné par le trading, le sport et la culture. J'aime créer du contenu qualitatif à propos du trading et du développement personnel en général : devenir la meilleure version de soi-même`,
+  bio: `Je suis un trader autodidacte passionné par les marchés financiers.  Grâce à une approche rigoureuse et à un apprentissage constant, j'ai développé une expertise approfondie en trading et en analyse de marché.
+  Je suis aussi passionné de sport et de culture. J'aime créer du contenu qualitatif à propos du trading et du développement personnel en général : devenir la meilleure version de soi-même. `,
   skills: ["trading", "eurousd", "street workout", "forex", "coaching"],
   contact: {
     email: "pqhl.alexandre@gmail.com",
@@ -31,7 +32,7 @@ const AboutMe: React.FC = () => {
       <Typography variant="h1" gutterBottom mt={6} align="center">
         A propos de moi
       </Typography>
-      <Box sx={{ py: 10 }}>
+      <Box sx={{ py: 6 }}>
         <Grid container spacing={10} alignItems="center">
           <Grid item xs={12} sm={4} container justifyContent="center">
             <Avatar

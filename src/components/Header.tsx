@@ -28,7 +28,7 @@ const pages = [
   { name: "plans", to: "plans" },
   { name: "testimony", to: "testimony" },
   { name: "contact", to: "contact" },
-  { name: "about me", to: "about-me" },
+  { name: "Qui suis-je", to: "about-me" },
 ];
 
 const Header: React.FC = ({ windowProp }: Props) => {

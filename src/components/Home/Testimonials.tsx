@@ -105,7 +105,7 @@ const TestimonialsCarousel: React.FC = () => {
               >
                 <CardMedia
                   component="img"
-                  image={`${import.meta.env.BASE_URL}${testimonial.image}`}
+                  src={`${import.meta.env.BASE_URL}${testimonial.image}`}
                   alt={testimonial.name}
                   sx={{ borderRadius: "50%", width: 100, height: 100, mb: 2 }}
                 />
