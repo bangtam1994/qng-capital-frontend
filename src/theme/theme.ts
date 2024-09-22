@@ -53,35 +53,35 @@ const theme = createTheme({
       fontSize: "1.65rem",
       fontWeight: 500,
       "@media (max-width:600px)": {
-        fontSize: "1rem",
+        fontSize: "1.4rem",
       },
     },
     h5: {
       fontSize: "1.4rem",
       fontWeight: 400,
       "@media (max-width:600px)": {
-        fontSize: "0.9rem",
+        fontSize: "1.3rem",
       },
     },
     h6: {
       fontSize: "1.4rem",
       fontWeight: 400,
       "@media (max-width:600px)": {
-        fontSize: "0.9rem",
+        fontSize: "1.1rem",
       },
     },
     body1: {
       fontSize: "1.2rem",
       fontWeight: 400,
       "@media (max-width:600px)": {
-        fontSize: "0.8rem",
+        fontSize: "1rem",
       },
     },
     body2: {
       fontSize: "1.1rem",
       fontWeight: 500,
       "@media (max-width:600px)": {
-        fontSize: "0.7rem",
+        fontSize: "0.9rem",
       },
     },
   },
