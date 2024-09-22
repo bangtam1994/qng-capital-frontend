@@ -17,8 +17,8 @@ const personalInfo = {
   skills: ["trading", "eurousd", "street workout", "forex", "coaching"],
   contact: {
     email: "pqhl.alexandre@gmail.com",
-    telegram: "https://t.me/qngcapital",
-    telegram_private: "https://t.me/alxqng",
+    telegram: "https://telegram.me/qngcapital",
+    telegram_private: "https://telegram.me/alxqng",
   },
 };
 

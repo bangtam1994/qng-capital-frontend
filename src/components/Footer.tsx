@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
           </IconButton>
           <IconButton
             color="primary"
-            onClick={() => window.open("https://t.me/qngcapital")}
+            onClick={() => window.open("https://telegram.me/qngcapital")}
           >
             <Telegram />
           </IconButton>

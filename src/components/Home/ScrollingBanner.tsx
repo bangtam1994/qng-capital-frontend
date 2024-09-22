@@ -12,7 +12,11 @@ import metatrader from "../../assets/metatrader4.png";
 import theme from "../../theme/theme";
 
 const bannerItems = [
-  { text: "Telegram", image: telegramImage, link: "https://t.me/yourchannel" },
+  {
+    text: "Telegram",
+    image: telegramImage,
+    link: "https://telegram.me/yourchannel",
+  },
   {
     text: "YouTube",
     image: youtubeImage,
