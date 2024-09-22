@@ -1,43 +1,49 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Container } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 interface SmoothWrapperProps {
   children: React.ReactNode;
 }
 
 const MotionWrapper: React.FC<SmoothWrapperProps> = ({ children }) => {
-  const [inView, setInView] = React.useState<boolean>(false);
+  // const [inView, setInView] = React.useState<boolean>(false);
 
-  const ref = useRef<HTMLDivElement>(null);
+  // const ref = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
+  const { ref, inView } = useInView({
+    threshold: 0.1, // Adjust this threshold if needed
+    triggerOnce: false, // Set to true if you want it to trigger only once
+  });
+  // const handleInView = (entry: IntersectionObserverEntry) => {
+  //   if (entry.isIntersecting) {
+  //     setInView(true);
+  //   }
+  // };
 
-  const handleInView = (entry: IntersectionObserverEntry) => {
-    if (entry.isIntersecting) {
-      setInView(true);
-    }
-  };
+  // React.useEffect(() => {
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => handleInView(entry));
+  //     },
+  //     { threshold: 0.4 }
+  //   );
 
+  //   if (ref.current) {
+  //     observer.observe(ref.current);
+  //   }
+
+  //   return () => {
+  //     if (ref.current) {
+  //       // eslint-disable-next-line react-hooks/exhaustive-deps
+  //       observer.unobserve(ref.current);
+  //     }
+  //   };
+  // }, []);
   React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => handleInView(entry));
-      },
-      { threshold: 0.4 }
-    );
+    console.log("InView:", inView);
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        observer.unobserve(ref.current);
-      }
-    };
-  }, []);
-  React.useEffect(() => {
     if (inView) {
       controls.start({ opacity: 1, y: 0 });
     } else {

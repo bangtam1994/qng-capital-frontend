@@ -176,7 +176,12 @@ const Header: React.FC = ({ windowProp }: Props) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ display: { md: "none" }, position: "fixed", left: 40 }}
+            sx={{
+              display: { md: "none" },
+              position: "fixed",
+              left: 40,
+              top: 20,
+            }}
             color="primary"
           >
             <MenuIcon />
@@ -194,6 +199,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
               alt="Logo"
               style={{
                 height: 80,
+                cursor: "none",
               }}
             />
             <Typography

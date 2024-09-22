@@ -16,6 +16,7 @@ import CustomButton from "../Button";
 import { useTranslation } from "react-i18next";
 import { motion, useAnimation } from "framer-motion";
 import theme from "../../theme/theme";
+import MotionWrapper from "../MotionWrapper";
 
 const PricingPlans: React.FC = () => {
   const [pricingOption, setPricingOption] = useState<"monthly" | "annual">(
@@ -85,11 +86,12 @@ const PricingPlans: React.FC = () => {
         color: "black",
       }}
     >
-      <motion.div
+      {/* <motion.div
         animate={controls}
         initial={{ opacity: 0, y: 50 }}
         transition={{ duration: 0.6 }}
-      >
+      > */}
+      <MotionWrapper>
         <Typography variant="h2" align="center" fontWeight={700} gutterBottom>
           Nos offres du moment
         </Typography>
@@ -314,7 +316,8 @@ const PricingPlans: React.FC = () => {
             </Grid2>
           ))}
         </Grid2>
-      </motion.div>
+      </MotionWrapper>
+      {/* </motion.div> */}
     </Container>
   );
 };
