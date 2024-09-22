@@ -55,8 +55,8 @@ const MotionWrapper: React.FC<SmoothWrapperProps> = ({ children }) => {
     <Container
       ref={ref}
       sx={{
-        padding: "80px 0px",
         color: "black",
+        padding: { xs: "15px", md: "80px 0px" },
       }}
     >
       <motion.div

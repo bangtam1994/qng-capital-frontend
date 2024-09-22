@@ -10,7 +10,13 @@ import TestimonialsCarousel from "../components/Home/Testimonials";
 
 const Home: React.FC = () => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "start" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "start",
+      }}
+    >
       <Hero />
       <ScrollingBanner />
       <PricingPlans />

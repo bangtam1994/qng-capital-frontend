@@ -42,7 +42,6 @@ const EbookFree: React.FC = () => {
         `${import.meta.env.VITE_BACKEND_URL}/user/ebook`,
         formData
       );
-      console.log("response>>>>>>>>", response);
       if (response.status === 201) {
         setSuccessMessage("Ton e-book a été envoyé à ton adresse email.");
         setErrorMessage("");
@@ -64,12 +63,12 @@ const EbookFree: React.FC = () => {
     <>
       <Box sx={{ backgroundColor: "#F5F6F9", width: "100vw" }}>
         <MotionWrapper>
-          <Box sx={{ py: 3, display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Typography
               variant="h1"
               align="center"
               gutterBottom
-              my={3}
+              my={1}
               lineHeight={1.5}
             >
               <span style={{ display: "block", marginBottom: "12px" }}>
@@ -99,7 +98,7 @@ const EbookFree: React.FC = () => {
                 <form onSubmit={handleSubmit}>
                   <Box
                     sx={{
-                      m: 4,
+                      m: { md: 4, xs: 2 },
                       display: "flex",
                       flexDirection: "column",
                       gap: 2,
