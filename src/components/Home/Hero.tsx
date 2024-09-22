@@ -38,7 +38,7 @@ const Hero = () => {
     <Box
       sx={{
         backgroundColor: theme.palette.background.paper,
-        py: 6,
+        py: { md: 6 },
         width: "100%",
         display: "flex",
         flexDirection: { md: "row", xs: "column" },
@@ -65,7 +65,7 @@ const Hero = () => {
           }}
         >
           <Typography
-            variant="h2"
+            variant="h1"
             sx={{
               fontWeight: 400,
               lineHeight: 1.2,
@@ -76,13 +76,13 @@ const Hero = () => {
             {t("welcome_message")}
           </Typography>
           <Typography
-            variant="h2"
+            variant="h1"
             gutterBottom
             sx={{
               fontWeight: 600,
               fontStyle: "initial",
               lineHeight: 1.2,
-              fontSize: "80px",
+              fontSize: { xs: "50px", md: "80px" },
               textAlign: { xs: "center" },
             }}
           >

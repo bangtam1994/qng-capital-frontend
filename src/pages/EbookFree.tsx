@@ -75,8 +75,9 @@ const EbookFree: React.FC = () => {
                 REÇOIS TON E-BOOK{" "}
                 <span style={{ textDecoration: "underline" }}>GRATUIT</span>
               </span>
-              <span
-                style={{
+              <Typography
+                variant="h3"
+                sx={{
                   textDecoration: "underline",
                   color: "white",
                   backgroundColor: theme.palette.secondary.main,
@@ -84,7 +85,7 @@ const EbookFree: React.FC = () => {
                 }}
               >
                 Supply And Demand 🎁
-              </span>
+              </Typography>
             </Typography>
             <Box
               sx={{

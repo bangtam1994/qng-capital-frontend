@@ -256,13 +256,15 @@ const Header: React.FC = ({ windowProp }: Props) => {
                     navigate(page.to);
                     handleDrawerClose();
                   }}
-                  sx={{ fontSize: "40px" }}
                 >
                   <ListItemButton>
                     <ListItemIcon>
                       {index % 2 === 0 ? <LocalOfferIcon /> : <ContactsIcon />}
                     </ListItemIcon>
-                    <ListItemText primary={page.name} />
+                    <ListItemText
+                      primary={page.name}
+                      primaryTypographyProps={{ style: { fontSize: "1.1rem" } }}
+                    />
                   </ListItemButton>
                 </ListItem>
               ))}

@@ -32,7 +32,7 @@ const theme = createTheme({
       fontSize: "3.2rem",
       fontWeight: 700,
       "@media (max-width:600px)": {
-        fontSize: "2.2rem",
+        fontSize: "2.5rem",
       },
     },
     h2: {
@@ -46,7 +46,7 @@ const theme = createTheme({
       fontSize: "1.75rem",
       fontWeight: 600,
       "@media (max-width:600px)": {
-        fontSize: "1.2rem",
+        fontSize: "1.8rem",
       },
     },
     h4: {
@@ -57,6 +57,13 @@ const theme = createTheme({
       },
     },
     h5: {
+      fontSize: "1.4rem",
+      fontWeight: 400,
+      "@media (max-width:600px)": {
+        fontSize: "0.9rem",
+      },
+    },
+    h6: {
       fontSize: "1.4rem",
       fontWeight: 400,
       "@media (max-width:600px)": {
