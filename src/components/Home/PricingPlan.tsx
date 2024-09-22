@@ -6,8 +6,6 @@ import {
   Card,
   CardContent,
   List,
-  ListItem,
-  ListItemText,
   ToggleButtonGroup,
   ToggleButton,
   Box,
@@ -16,8 +14,8 @@ import { Plan, plans } from "../../utils/plans";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../Button";
 import { useTranslation } from "react-i18next";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { motion, useAnimation } from "framer-motion";
+import theme from "../../theme/theme";
 
 const PricingPlans: React.FC = () => {
   const [pricingOption, setPricingOption] = useState<"monthly" | "annual">(
@@ -37,7 +35,7 @@ const PricingPlans: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => handleInView(entry));
       },
-      { threshold: 0.2 }
+      { threshold: 0.4 }
     );
 
     if (ref.current) {
@@ -78,6 +76,7 @@ const PricingPlans: React.FC = () => {
   return (
     <Container
       ref={ref}
+      id="pricing-section"
       sx={{
         padding: "60px 0px",
         backgroundColor: backgroundColor,
@@ -115,10 +114,9 @@ const PricingPlans: React.FC = () => {
                 //   backgroundColor: backgroundColor,
                 borderRadius: "24px 0px 0px 24px",
                 padding: "12px 22px",
-                //   color: "lightgrey",
               }}
             >
-              monthly
+              Mensuel
             </ToggleButton>
             <ToggleButton
               value="annual"
@@ -130,7 +128,7 @@ const PricingPlans: React.FC = () => {
                 padding: "12px 22px",
               }}
             >
-              annual
+              Annuel
             </ToggleButton>
           </ToggleButtonGroup>
         </Typography>
@@ -143,18 +141,19 @@ const PricingPlans: React.FC = () => {
             >
               <Card
                 variant="outlined"
-                onClick={() => navigate(`plans/${plan.type}`)}
+                onClick={() => navigate(`/${plan.type}`)}
                 sx={{
-                  width: "340px",
-                  maxWidth: "350px",
+                  width: { sm: "100%", xs: "90%" },
+                  maxWidth: "400px",
+                  height: "100%",
                   margin: "0 auto",
                   borderRadius: "16px",
-                  padding: "2rem",
+                  padding: "1.8rem",
 
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-                  // borderColor: plan.type === "premium" ? mainColor : notMainColor,
+                  // borderColor: plan.type === "trading_academy" ? mainColor : notMainColor,
                   border: `2px solid ${
-                    plan.type === "premium" ? mainColor : notMainColor
+                    plan.type === "trading_academy" ? mainColor : notMainColor
                   }`,
                   backgroundColor: notMainColor,
                   color: "black",
@@ -173,28 +172,33 @@ const PricingPlans: React.FC = () => {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
+                    height: "100%",
                   }}
                 >
                   <CardContent
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "space-center",
-                      height: "500px",
+                      justifyContent: "space-around",
+                      padding: "4px",
                     }}
                   >
                     <Box
                       sx={{
-                        minHeight: "40%",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-around",
+                        minHeight: "30%",
                         borderBottom: "1px solid lightGrey",
                       }}
                     >
                       <Typography
-                        variant="h5"
+                        variant="h4"
                         component="div"
                         gutterBottom
                         sx={{
-                          fontWeight: plan.type === "premium" ? 700 : 300,
+                          fontWeight:
+                            plan.type === "trading_academy" ? 700 : 500,
                         }}
                       >
                         {plan.name}
@@ -216,29 +220,20 @@ const PricingPlans: React.FC = () => {
                           }}
                         >
                           <Typography
-                            variant="body2"
-                            sx={{
-                              textDecoration: "line-through",
-                              color: "gray",
-                              mr: 1,
-                            }}
-                          >
-                            {(pricingOption === "monthly"
-                              ? Number(plan.monthlyPrice) * 1.2
-                              : Number(plan.annualPrice) * 1.2
-                            ).toFixed(2)}{" "}
-                            €
-                          </Typography>
-                          <Typography
-                            variant="h4"
+                            variant="h2"
                             sx={{
                               fontWeight: "bold",
-                              marginBottom: 1,
                             }}
                           >
-                            {pricingOption === "annual"
-                              ? plan.annualPrice
-                              : plan.monthlyPrice}{" "}
+                            {Number(
+                              pricingOption === "annual"
+                                ? plan.type !== "elite_performance"
+                                  ? plan.annualPrice
+                                  : plan.threeMonthPrice
+                                : plan.monthlyPrice
+                            ).toFixed(
+                              plan.type !== "elite_performance" ? 2 : 0
+                            )}
                             €
                           </Typography>
                           <Typography
@@ -252,6 +247,20 @@ const PricingPlans: React.FC = () => {
                             {pricingOption === "annual" ? "/an" : "/mois"}
                           </Typography>{" "}
                         </Box>
+                        {pricingOption === "annual" && (
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              color: theme.palette.grey[800],
+                            }}
+                          >
+                            Au lieu de{" "}
+                            {plan.type !== "elite_performance"
+                              ? plan.baseAnnualPrice
+                              : plan.baseThreeMonthPrice}{" "}
+                            €
+                          </Typography>
+                        )}
                       </motion.div>
 
                       <Typography variant="body2" margin={"22px 0px"}>
@@ -261,16 +270,22 @@ const PricingPlans: React.FC = () => {
 
                     <List sx={{ marginTop: 2, marginBottom: 2 }}>
                       {plan.features.map((feature, index) => (
-                        <ListItem key={index} sx={{ paddingLeft: 0 }}>
-                          <CheckCircleIcon
+                        <Box key={index} sx={{ paddingLeft: 0 }}>
+                          {/* <CheckCircleIcon
                             sx={{
                               color: mainColor,
                               marginRight: 1,
                             }}
-                          />
+                          /> */}
 
-                          <ListItemText primary={feature} />
-                        </ListItem>
+                          <Typography
+                            textAlign="left"
+                            fontSize={18}
+                            gutterBottom
+                          >
+                            {feature}
+                          </Typography>
+                        </Box>
                       ))}
                     </List>
                   </CardContent>
@@ -278,11 +293,16 @@ const PricingPlans: React.FC = () => {
                     buttonType="secondary"
                     variant="outlined"
                     sx={{
-                      color: plan.type === "premium" ? notMainColor : mainColor,
+                      color:
+                        plan.type === "trading_academy"
+                          ? notMainColor
+                          : mainColor,
                       backgroundColor:
-                        plan.type === "premium" ? mainColor : notMainColor,
+                        plan.type === "trading_academy"
+                          ? mainColor
+                          : notMainColor,
                       border: `2px solid ${
-                        plan.type === "premium" ? mainColor : mainColor
+                        plan.type === "trading_academy" ? mainColor : mainColor
                       }`,
                       fontWeight: 700,
                     }}

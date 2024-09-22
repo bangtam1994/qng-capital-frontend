@@ -25,9 +25,9 @@ interface Props {
   windowProp?: () => Window;
 }
 const pages = [
-  { name: "plans", to: "plans" },
-  { name: "testimony", to: "testimony" },
-  { name: "contact", to: "contact" },
+  // { name: "plans", to: "plans" },
+  // { name: "testimony", to: "testimony" },
+  { name: "E-Book Gratuit", to: "ebook/free" },
   { name: "Qui suis-je", to: "about-me" },
 ];
 
@@ -168,6 +168,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
               alignItems: "center",
               justifyContent: "center",
               width: "100%",
+              position: "sticky",
             },
           }}
         >

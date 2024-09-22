@@ -27,7 +27,7 @@ const theme = createTheme({
       fontFamily: "Raleway",
       textTransform: "none",
     },
-
+    button: { fontSize: "1.3rem" },
     h1: { fontSize: "3.2rem", fontWeight: 700 },
     h2: {
       fontSize: "2.5rem",
@@ -36,6 +36,22 @@ const theme = createTheme({
     h3: {
       fontSize: "1.75rem",
       fontWeight: 600,
+    },
+    h4: {
+      fontSize: "1.65rem",
+      fontWeight: 500,
+    },
+    h5: {
+      fontSize: "1.4rem",
+      fontWeight: 400,
+    },
+    body1: {
+      fontSize: "1.2rem",
+      fontWeight: 400,
+    },
+    body2: {
+      fontSize: "1.1rem",
+      fontWeight: 500,
     },
   },
 });

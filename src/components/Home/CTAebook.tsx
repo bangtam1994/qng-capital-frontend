@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Modal,
-  Typography,
-  TextField,
-  IconButton,
-} from "@mui/material";
+import { Box, Button, Modal, Typography, TextField } from "@mui/material";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import CustomButton from "../Button";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import MotionWrapper from "../MotionWrapper";
 
 const CTAEbook = () => {
@@ -32,6 +24,7 @@ const CTAEbook = () => {
     padding: "30px",
     textAlign: "center",
     color: "#fff",
+    width: "100%",
   };
 
   const modalStyle = {
@@ -39,18 +32,25 @@ const CTAEbook = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    maxWidth: 500,
+    width: { xs: "400px", md: "600px" },
+    height: { md: "300px" },
     bgcolor: "background.paper",
     borderRadius: "15px",
     boxShadow: 24,
     p: 4,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   };
 
+  const handleSubmit = () => {
+    console.log("submitted", email);
+  };
   return (
     <MotionWrapper>
       <Box sx={ctaBoxStyle}>
         <Typography variant="h5" gutterBottom>
-          Télécharge mon e-book trader finance !
+          Abonne-toi à ma newsletter !
         </Typography>
         <CustomButton
           variant="contained"
@@ -58,7 +58,7 @@ const CTAEbook = () => {
           onClick={handleOpen}
           sx={{ mt: 2 }}
         >
-          Recevoir l'e-book gratuitement
+          S'abonner
         </CustomButton>
       </Box>
 
@@ -68,11 +68,11 @@ const CTAEbook = () => {
             <>
               {" "}
               <Typography variant="h6" component="h2" gutterBottom>
-                Rejoignez notre canal Telegram pour recevoir votre e-book
-                gratuitement
+                Abonnez-vous à la newsletter
               </Typography>
               <Typography variant="body2" sx={{ mb: 2 }}>
-                J'y partage aussi des analyses et des news chaque semaine{" "}
+                Vous recevrez toutes les news à propos des formations à venir et
+                actualités de QNG Capital.
               </Typography>
               <Box
                 sx={{
@@ -88,29 +88,21 @@ const CTAEbook = () => {
                   fullWidth
                   onChange={handleEmail}
                 />
-                <IconButton
-                  onClick={() => {
-                    console.log("entered email>>>>", email);
-                    setStep(1);
-                  }}
-                >
-                  <ArrowRightAltIcon />
-                </IconButton>
               </Box>
               <Button
                 variant="contained"
                 color="primary"
                 startIcon={<TelegramIcon />}
-                href="https://t.me/qngcapital"
                 fullWidth
-                target="_blank"
+                onClick={handleSubmit}
               >
-                Rejoindre le canal Telegram
+                S'abonner
               </Button>
             </>
           ) : (
             <Typography variant="h6" component="h2" gutterBottom>
-              Merci ! Vous recevrez votre e-book dans les plus bref délais.
+              Merci pour votre inscription ! Vous recevrez toutes les news de
+              QNG sur votre boîte mail.
             </Typography>
           )}
         </Box>

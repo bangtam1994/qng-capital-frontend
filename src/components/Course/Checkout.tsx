@@ -56,7 +56,7 @@ const CheckoutForm: React.FC<{ price: number; onSuccess: () => void }> = ({
         size="large"
         sx={{ marginTop: "2rem" }}
       >
-        Payer {price} €
+        Payer {price.toFixed(2)} €
       </Button>
     </Box>
   );

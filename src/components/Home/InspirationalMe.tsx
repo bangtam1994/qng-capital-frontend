@@ -1,15 +1,16 @@
 import React from "react";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import MotionWrapper from "../MotionWrapper";
 
 const VideoContainer = styled(Box)({
-  flex: 1,
+  flex: 1.5,
   minWidth: "50%",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  height: "370px",
 });
 
 const ContentContainer = styled(Box)({
@@ -19,46 +20,55 @@ const ContentContainer = styled(Box)({
 const InspirationalMe = () => {
   return (
     <MotionWrapper>
-      <Container sx={{ height: "400px" }}>
-        <Box
-          display="flex"
-          flexDirection={{ md: "row", xs: "column" }}
-          gap={{ md: "3rem", xs: "2rem" }}
-          minHeight={"370px"}
-          padding={2}
-        >
-          <VideoContainer>
-            <iframe
-              width="100%"
-              height={"90%"}
-              src="https://www.youtube.com/embed/DfIs4DwNR9c?si=jnztLgAf28OLLE-P"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-          </VideoContainer>
+      <Typography
+        variant="h2"
+        gutterBottom
+        fontWeight={700}
+        align="center"
+        mb={8}
+      >
+        Deviens le trader que tu rêves d'être
+      </Typography>
+      <Box
+        display="flex"
+        flexDirection={{ md: "row", xs: "column" }}
+        gap="3rem"
+        padding={{ xs: 2 }}
+      >
+        <VideoContainer>
+          <Box
+            component="iframe"
+            src="https://www.youtube.com/embed/tFWAJE2UYT8?si=GHQEo7xotrdiwnKY"
+            sx={{
+              height: {
+                xs: "200px",
+                md: "400px",
+              },
+              width: "100%",
+              border: "none",
+            }}
+            allowFullScreen
+          />
+        </VideoContainer>
 
-          <ContentContainer textAlign={{ md: "start", xs: "center" }}>
-            <Typography variant="h4" gutterBottom fontWeight={700}>
-              Devenez le Trader que Vous Rêvez d'Être
-            </Typography>
-            <Typography margin={"40px 0px"}>
-              Chaque voyage commence par un premier pas, et le vôtre commence
-              ici. Vous avez le désir, l'ambition et le rêve de devenir trader —
-              mais savoir où commencer et comment progresser peut être
-              intimidant. Ne laissez pas le doute freiner votre ascension.
-              <br />
-              Au contraire, laissez-le être le moteur qui vous propulse vers
-              l'excellence.
-            </Typography>
-            <Typography margin={"10px 0px"} fontWeight={600}>
-              Votre avenir vous attend. Prenez le contrôle maintenant.
-            </Typography>
-          </ContentContainer>
-        </Box>
-      </Container>
+        <ContentContainer
+          textAlign={{ md: "start", xs: "center" }}
+          height={"100%"}
+        >
+          <Typography variant="h5">
+            Chaque voyage commence par un premier pas, et le tien commence ici.
+            Tu as le désir, l'ambition et le rêve de devenir trader — mais
+            savoir où commencer et comment progresser peut être intimidant. Ne
+            laisses pas le doute freiner ton ascension.
+            <br />
+            Au contraire, laissez-le être le moteur qui te propulse vers
+            l'excellence.
+          </Typography>
+          <Typography margin={"10px 0px"} variant="h6" fontWeight={600}>
+            Ton avenir t'attend. Prends le contrôle maintenant.
+          </Typography>
+        </ContentContainer>
+      </Box>
     </MotionWrapper>
   );
 };

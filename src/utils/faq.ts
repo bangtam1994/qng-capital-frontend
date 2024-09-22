@@ -18,6 +18,6 @@ export const faqData = [
   {
     question: "Puis-je accéder au contenu des formations après leur fin ?",
     answer:
-      "Oui, vous aurez accès aux ressources et au contenu de votre formation même après la fin du programme. Pour les formations Basic, vous aurez accès aux signaux via Telegram tant que vous êtes abonné. Pour les formations Premium et Ultimate, vous pourrez consulter les enregistrements des sessions de coaching et les ressources supplémentaires à tout moment.",
+      "Oui, vous aurez accès aux ressources et au contenu de votre formation même après la fin du programme. Pour les formations Smart Signals, vous aurez accès aux signaux via Telegram tant que vous êtes abonné. Pour les formations Trading Academy et Elite Performance, vous pourrez consulter les enregistrements des sessions de coaching et les ressources supplémentaires à tout moment.",
   },
 ];

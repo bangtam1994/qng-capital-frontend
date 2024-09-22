@@ -59,7 +59,7 @@ const TestimonialsCarousel: React.FC = () => {
         gutterBottom
         color={"rgb(230, 230, 230)"}
         lineHeight={"1.3em"}
-        fontSize={70}
+        sx={{ fontSize: { xs: 60, md: 70 } }}
       >
         Témoignages
       </Typography>
@@ -70,7 +70,7 @@ const TestimonialsCarousel: React.FC = () => {
         fontWeight={700}
         lineHeight={"1.3em"}
       >
-        Anciens élèves
+        élèves
       </Typography>
       <Box margin={"80px 0px"}>
         <Slider {...settings}>

@@ -15,6 +15,16 @@ const Hero = () => {
     t("subtitle_message_2"),
     t("subtitle_message_3"),
   ];
+
+  const handleScrollToPricing = () => {
+    const pricingSection = document.getElementById("pricing-section");
+    if (pricingSection) {
+      const offsetTop =
+        pricingSection.getBoundingClientRect().top + window.pageYOffset - 100; // Adjust the offset (e.g., 100px)
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+    }
+  };
+
   const [currentSubtitleIndex, setCurrentSubtitleIndex] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -104,6 +114,7 @@ const Hero = () => {
           variant="contained"
           color="primary"
           sx={{ margin: { xs: "0 auto", md: 0 } }}
+          onClick={handleScrollToPricing}
         >
           Découvrir les formations
         </CustomButton>

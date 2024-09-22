@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   Typography,
   Box,
   Avatar,
-  Grid,
   Paper,
-  Divider,
   useTheme,
 } from "@mui/material";
-import Me from "../assets/me.jpg";
 import Me2 from "../assets/me_2.jpg";
+import MotionWrapper from "../components/MotionWrapper";
 const personalInfo = {
-  name: "Alexandre Pham",
+  name: "Alexandre",
   title: "Trader Forex",
   bio: `Je suis un trader autodidacte passionné par les marchés financiers.  Grâce à une approche rigoureuse et à un apprentissage constant, j'ai développé une expertise approfondie en trading et en analyse de marché.
   Je suis aussi passionné de sport et de culture. J'aime créer du contenu qualitatif à propos du trading et du développement personnel en général : devenir la meilleure version de soi-même. `,
@@ -20,48 +18,58 @@ const personalInfo = {
   contact: {
     email: "pqhl.alexandre@gmail.com",
     telegram: "https://t.me/qngcapital",
-    linkedIn: "https://www.linkedin.com/in/alexandre-phm-8593511b1",
+    telegram_private: "https://t.me/alxqng",
   },
 };
 
 const AboutMe: React.FC = () => {
   const theme = useTheme();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Container>
-      <Typography variant="h1" gutterBottom mt={6} align="center">
-        A propos de moi
-      </Typography>
-      <Box sx={{ py: 6 }}>
-        <Grid container spacing={10} alignItems="center">
-          <Grid item xs={12} sm={4} container justifyContent="center">
+      <MotionWrapper>
+        <Typography variant="h1" gutterBottom mt={6} align="center">
+          A propos de moi
+        </Typography>
+        <Box
+          sx={{
+            py: 6,
+            display: "flex",
+            gap: "3rem",
+            alignItems: "center",
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
+          <Box>
             <Avatar
               alt={personalInfo.name}
-              src={Me}
+              src={Me2}
               sx={{
-                width: { md: 400, xs: 300 },
-                height: { md: 400, xs: 300 },
+                width: { md: 500, xs: 300 },
+                height: { md: 500, xs: 300 },
                 borderRadius: "50%",
               }}
             />
-          </Grid>
-          <Grid item xs={12} sm={8}>
+          </Box>
+          <Box textAlign={{ xs: "center", sm: "left" }}>
             <Typography variant="h2" gutterBottom>
               {personalInfo.name}
             </Typography>
             <Typography variant="h4" color="text.secondary" gutterBottom>
               {personalInfo.title}
             </Typography>
-            <Typography paragraph>{personalInfo.bio}</Typography>
-          </Grid>
-        </Grid>
+            <Typography variant="h5">{personalInfo.bio}</Typography>
+          </Box>
+        </Box>
 
-        <Box sx={{ my: 4 }}>
-          <Typography variant="h3" gutterBottom mt={10}>
+        <Box sx={{ my: 6 }}>
+          <Typography variant="h3" gutterBottom my={4}>
             Compétences
           </Typography>
           <Paper elevation={3} sx={{ p: 2 }}>
-            <Typography paragraph>
+            <Typography>
               {personalInfo.skills.map((skill, index) => (
                 <Box
                   key={index}
@@ -69,7 +77,7 @@ const AboutMe: React.FC = () => {
                     display: "inline-block",
                     m: 1,
                     p: 1,
-                    borderRadius: "4px",
+                    borderRadius: "6px",
                     backgroundColor: theme.palette.primary.dark,
                     color: theme.palette.primary.contrastText,
                   }}
@@ -81,19 +89,21 @@ const AboutMe: React.FC = () => {
           </Paper>
         </Box>
 
-        <Divider sx={{ my: 4 }} />
-
         <Box
           sx={{
             display: "flex",
             flexDirection: { md: "row", xs: "column" },
             justifyContent: { md: "space-between", xs: "center" },
             alignItems: { md: "space-between", xs: "center" },
-
             gap: 10,
           }}
         >
-          <Box>
+          <Box
+            gap={3}
+            display={"flex"}
+            flexDirection={"column"}
+            textAlign={{ xs: "center", sm: "left" }}
+          >
             <Typography variant="h3" gutterBottom>
               Contact
             </Typography>
@@ -102,47 +112,56 @@ const AboutMe: React.FC = () => {
               <br />
               <a
                 href={`mailto:${personalInfo.contact.email}`}
-                style={{ color: theme.palette.primary.main }}
+                style={{
+                  color: "blue",
+                }}
               >
                 {personalInfo.contact.email}
               </a>
             </Typography>
+
             <Typography paragraph>
-              Retrouvez-moi sur LinkedIn :
-              <br />
-              <a
-                href={personalInfo.contact.linkedIn}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: theme.palette.primary.main }}
-              >
-                LinkedIn
-              </a>
-            </Typography>
-            <Typography paragraph>
-              Découvrez mon Télégram :
+              Rejoignez le canal Télégram public:
               <br />
               <a
                 href={personalInfo.contact.telegram}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: theme.palette.primary.main }}
+                style={{
+                  color: theme.palette.secondary.main,
+                  textDecoration: "none",
+                }}
               >
-                Télégram
+                QNG CAPITAL
+              </a>
+            </Typography>
+            <Typography paragraph>
+              Mon Télégram perso:
+              <br />
+              <a
+                href={personalInfo.contact.telegram_private}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: theme.palette.secondary.main,
+                  textDecoration: "none",
+                }}
+              >
+                Alxqng
               </a>
             </Typography>
           </Box>
-          <Avatar
+          {/* <Avatar
             alt={personalInfo.name}
-            src={Me2}
+            src={Me}
             sx={{
               width: { md: 500, xs: 300 },
               height: { md: 500, xs: 300 },
               borderRadius: "10%",
             }}
-          />
+          /> */}
         </Box>
-      </Box>
+      </MotionWrapper>
     </Container>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, styled } from "@mui/material";
 
 const CustomContainer = styled(Box)(({ theme }) => ({
-  maxWidth: "1200px",
+  maxWidth: "1300px",
   width: "100%",
   margin: "0 auto",
   padding: "0 16px",

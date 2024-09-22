@@ -8,8 +8,8 @@ const Plans: React.FC = () => {
   return (
     <Container>
       <Box sx={{ display: "flex", flexDirection: "column", padding: 10 }}>
-        <Typography variant="h3" align="center" gutterBottom>
-          Nos offres
+        <Typography variant="h2" align="center" gutterBottom mb={10}>
+          Mes offres
         </Typography>
         <Outlet />
       </Box>
