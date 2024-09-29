@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import StripeCheckout from "../components/Course/Checkout";
 import { Plan, plans } from "../utils/plans";
 import theme from "../theme/theme";
+import Title from "../components/Title";
 
 const ImageContainer = styled(Box)({
   height: "600px",
@@ -45,9 +46,8 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
         <div>No data found for this plan</div>
       ) : (
         <>
-          <Typography variant="h1" gutterBottom mt={6} align="center">
-            {data.name}
-          </Typography>
+          <Title variant="h1" mt={8} mb={8} text={data.name} />
+
           <Box
             display="flex"
             flexDirection={{ md: "row", xs: "column" }}

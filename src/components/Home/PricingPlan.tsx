@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import { motion, useAnimation } from "framer-motion";
 import theme from "../../theme/theme";
 import MotionWrapper from "../MotionWrapper";
+import Title from "../Title";
 
 const PricingPlans: React.FC = () => {
   const [pricingOption, setPricingOption] = useState<"monthly" | "annual">(
@@ -78,6 +79,7 @@ const PricingPlans: React.FC = () => {
     <Container
       ref={ref}
       id="pricing-section"
+      maxWidth={false}
       sx={{
         padding: "60px 0px",
         backgroundColor: backgroundColor,
@@ -86,15 +88,9 @@ const PricingPlans: React.FC = () => {
         color: "black",
       }}
     >
-      {/* <motion.div
-        animate={controls}
-        initial={{ opacity: 0, y: 50 }}
-        transition={{ duration: 0.6 }}
-      > */}
-      <MotionWrapper>
-        <Typography variant="h2" align="center" fontWeight={700} gutterBottom>
-          Nos offres du moment
-        </Typography>
+      <MotionWrapper maxWidth={false}>
+        <Title variant="h2" text="Nos offres du moment" />
+
         <Typography align="center" paragraph margin={4}>
           Choisissez votre abonnement à QNG Capital qui vous correspond le
           mieux, et faites monter votre capital aujourd'hui.
@@ -113,7 +109,6 @@ const PricingPlans: React.FC = () => {
               value="monthly"
               aria-label="monthly pricing"
               sx={{
-                //   backgroundColor: backgroundColor,
                 borderRadius: "24px 0px 0px 24px",
                 padding: "12px 22px",
               }}
@@ -124,8 +119,6 @@ const PricingPlans: React.FC = () => {
               value="annual"
               aria-label="annual pricing"
               sx={{
-                //   color: "lightgrey",
-                //   backgroundColor: "#3b5273",
                 borderRadius: " 0px 24px 24px 0px",
                 padding: "12px 22px",
               }}
@@ -150,7 +143,7 @@ const PricingPlans: React.FC = () => {
                   height: "100%",
                   margin: "0 auto",
                   borderRadius: "16px",
-                  padding: "1.8rem",
+                  padding: "2.5rem",
 
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
                   // borderColor: plan.type === "trading_academy" ? mainColor : notMainColor,
@@ -282,7 +275,7 @@ const PricingPlans: React.FC = () => {
 
                           <Typography
                             textAlign="left"
-                            fontSize={18}
+                            fontSize={16}
                             gutterBottom
                           >
                             {feature}

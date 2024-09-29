@@ -1,10 +1,10 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { keyframes, styled } from "@mui/material/styles";
-import telegramImage from "../../assets/tele.png";
+import telegramImage from "../../assets/telegram2.png";
 import youtubeImage from "../../assets/youtube.png";
 import tradingViewImage from "../../assets/tradingview.svg";
-import ftmoImage from "../../assets/ftmo.webp";
+import ftmoImage from "../../assets/ftmo.png";
 import alphacapital from "../../assets/alphacapital.png";
 import vantageImage from "../../assets/vantage.png";
 import metatrader from "../../assets/metatrader4.png";

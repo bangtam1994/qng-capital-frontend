@@ -22,12 +22,12 @@ const theme = createTheme({
   },
 
   typography: {
-    fontFamily: ["Raleway", "Inter"].join(","),
+    fontFamily: ["Raleway", "Inter", "Plus Jakarta Sans"].join(","),
     allVariants: {
       fontFamily: "Raleway",
       textTransform: "none",
     },
-    button: { fontSize: "1.3rem" },
+    button: { fontSize: "1.2rem" },
     h1: {
       fontSize: "3.2rem",
       fontWeight: 700,
@@ -36,8 +36,8 @@ const theme = createTheme({
       },
     },
     h2: {
-      fontSize: "2.5rem",
-      fontWeight: 700,
+      fontSize: "2.9rem",
+      fontWeight: 800,
       "@media (max-width:600px)": {
         fontSize: "2rem",
       },
@@ -64,7 +64,7 @@ const theme = createTheme({
       },
     },
     h6: {
-      fontSize: "1.4rem",
+      fontSize: "1.2rem",
       fontWeight: 400,
       "@media (max-width:600px)": {
         fontSize: "1.1rem",

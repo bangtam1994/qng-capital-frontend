@@ -3,10 +3,10 @@ import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 // import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
-// import HeroBack from "../../assets/hero_back.png";
-import CustomButton from "../Button";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Video from "../../assets/hero_2.mp4";
 import theme from "../../theme/theme";
+import GradientButton from "../GradientButton";
 const Hero = () => {
   const { t } = useTranslation();
   // const theme = useTheme();
@@ -110,14 +110,15 @@ const Hero = () => {
             {subtitles[currentSubtitleIndex]}
           </motion.span>
         </Typography>
-        <CustomButton
+        <GradientButton
           variant="contained"
           color="primary"
           sx={{ margin: { xs: "0 auto", md: 0 } }}
           onClick={handleScrollToPricing}
+          endIcon={<ChevronRightIcon />}
         >
           Découvrir les formations
-        </CustomButton>
+        </GradientButton>
       </Box>
 
       <Box

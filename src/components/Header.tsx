@@ -20,6 +20,8 @@ import { useTheme } from "@mui/material/styles";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import MenuIcon from "@mui/icons-material/Menu";
+import GradientButton from "./GradientButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface Props {
   windowProp?: () => Window;
@@ -27,8 +29,8 @@ interface Props {
 const pages = [
   // { name: "plans", to: "plans" },
   // { name: "testimony", to: "testimony" },
-  { name: "E-Book Gratuit", to: "ebook/free" },
   { name: "Qui suis-je", to: "about-me" },
+  { name: "E-Book Gratuit", to: "ebook/free" },
 ];
 
 const Header: React.FC = ({ windowProp }: Props) => {
@@ -93,11 +95,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
 
   const navigate = useNavigate();
   return (
-    <AppBar
-      position="sticky"
-      elevation={scrollY > 50 ? 4 : 0} // Add shadow only after scrolling
-      sx={headerStyle}
-    >
+    <AppBar position="sticky" elevation={scrollY > 50 ? 4 : 0} sx={headerStyle}>
       <Toolbar>
         <Typography
           variant="h6"
@@ -141,21 +139,37 @@ const Header: React.FC = ({ windowProp }: Props) => {
             </Typography>
           </Link>
         </Typography>
-        <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          {pages.map((page) => (
-            <Button
-              key={page.name}
-              onClick={() => navigate(page.to)}
-              sx={{
-                my: 2,
-                display: "block",
-                letterSpacing: ".2rem",
-                marginRight: "60px",
-              }}
-            >
-              {t(page.name).toUpperCase()}
-            </Button>
-          ))}
+        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
+          {pages.map((page) => {
+            if (page.name === "E-Book Gratuit")
+              return (
+                <GradientButton
+                  key={page.name}
+                  onClick={() => navigate(page.to)}
+                  sx={{
+                    letterSpacing: ".2rem",
+                    marginRight: "30px",
+                  }}
+                >
+                  {t(page.name).toUpperCase()}
+                </GradientButton>
+              );
+            else
+              return (
+                <Button
+                  key={page.name}
+                  onClick={() => navigate(page.to)}
+                  sx={{
+                    my: 2,
+                    display: "block",
+                    letterSpacing: ".2rem",
+                    marginRight: "60px",
+                  }}
+                >
+                  {t(page.name).toUpperCase()}
+                </Button>
+              );
+          })}
         </Box>
 
         {/* MOBILE HEADER */}
@@ -233,12 +247,23 @@ const Header: React.FC = ({ windowProp }: Props) => {
               display: { xs: "block", md: "none" },
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
-                width: "70%",
+                width: "100%",
                 padding: "0px 30px",
                 backgroundColor: "white",
               },
             }}
           >
+            <IconButton
+              onClick={handleDrawerClose}
+              sx={{
+                position: "absolute",
+                top: 16,
+                right: 16,
+                color: "black",
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
             <List
               sx={{
                 display: "flex",
@@ -259,7 +284,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
                 >
                   <ListItemButton>
                     <ListItemIcon>
-                      {index % 2 === 0 ? <LocalOfferIcon /> : <ContactsIcon />}
+                      {index % 2 !== 0 ? <LocalOfferIcon /> : <ContactsIcon />}
                     </ListItemIcon>
                     <ListItemText
                       primary={page.name}

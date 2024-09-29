@@ -1,46 +1,23 @@
 import React from "react";
-import { Container } from "@mui/material";
+import { Breakpoint, Container } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 interface SmoothWrapperProps {
   children: React.ReactNode;
+  maxWidth?: false | Breakpoint | undefined;
 }
 
-const MotionWrapper: React.FC<SmoothWrapperProps> = ({ children }) => {
-  // const [inView, setInView] = React.useState<boolean>(false);
-
-  // const ref = useRef<HTMLDivElement>(null);
+const MotionWrapper: React.FC<SmoothWrapperProps> = ({
+  children,
+  maxWidth,
+}) => {
   const controls = useAnimation();
   const { ref, inView } = useInView({
-    threshold: 0.1, // Adjust this threshold if needed
-    triggerOnce: false, // Set to true if you want it to trigger only once
+    threshold: 0.1,
+    triggerOnce: false,
   });
-  // const handleInView = (entry: IntersectionObserverEntry) => {
-  //   if (entry.isIntersecting) {
-  //     setInView(true);
-  //   }
-  // };
 
-  // React.useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => handleInView(entry));
-  //     },
-  //     { threshold: 0.4 }
-  //   );
-
-  //   if (ref.current) {
-  //     observer.observe(ref.current);
-  //   }
-
-  //   return () => {
-  //     if (ref.current) {
-  //       // eslint-disable-next-line react-hooks/exhaustive-deps
-  //       observer.unobserve(ref.current);
-  //     }
-  //   };
-  // }, []);
   React.useEffect(() => {
     console.log("InView:", inView);
 
@@ -54,6 +31,7 @@ const MotionWrapper: React.FC<SmoothWrapperProps> = ({ children }) => {
   return (
     <Container
       ref={ref}
+      maxWidth={maxWidth}
       sx={{
         color: "black",
         padding: { xs: "15px", md: "80px 0px" },
