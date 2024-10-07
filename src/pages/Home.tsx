@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import PricingPlans from "../components/Home/PricingPlan";
 import InspirationalMe from "../components/Home/InspirationalMe";
 import FAQPage from "../components/Home/FAQ";
-import CTAEbook from "../components/Home/CTAebook";
+import CTANewsletter from "../components/Home/CTANewletter";
 import TestimonialsCarousel from "../components/Home/Testimonials";
 
 const Home: React.FC = () => {
@@ -21,7 +21,7 @@ const Home: React.FC = () => {
       <ScrollingBanner />
       <PricingPlans />
       <InspirationalMe />
-      <CTAEbook />
+      <CTANewsletter />
       <TestimonialsCarousel />
       <FAQPage />
     </Box>

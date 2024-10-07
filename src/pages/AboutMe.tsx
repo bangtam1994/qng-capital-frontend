@@ -12,9 +12,11 @@ import MotionWrapper from "../components/MotionWrapper";
 const personalInfo = {
   name: "Alexandre",
   title: "Trader Forex",
-  bio: `Je suis un trader autodidacte passionné par les marchés financiers.  Grâce à une approche rigoureuse et à un apprentissage constant, j'ai développé une expertise approfondie en trading et en analyse de marché.
-  Je suis aussi passionné de sport et de culture. J'aime créer du contenu qualitatif à propos du trading et du développement personnel en général : devenir la meilleure version de soi-même. `,
-  skills: ["trading", "eurousd", "street workout", "forex", "coaching"],
+  bio: `Je suis un trader autodidacte passionné par les marchés financiers.  Grâce à une approche rigoureuse et à un apprentissage constant, j'ai développé une expertise approfondie en trading et en analyse de marché. 
+  `,
+  bio_suite:
+    "Je suis aussi passionné de sport et de culture. J'aime créer du contenu qualitatif à propos du trading et du développement personnel en général : devenir la meilleure version de soi-même.",
+  skills: ["trading", "eurousd", "forex", "street workout", "coaching"],
   contact: {
     email: "pqhl.alexandre@gmail.com",
     telegram: "https://telegram.me/qngcapital",
@@ -60,7 +62,9 @@ const AboutMe: React.FC = () => {
             <Typography variant="h4" color="text.secondary" gutterBottom>
               {personalInfo.title}
             </Typography>
-            <Typography variant="h5">{personalInfo.bio}</Typography>
+            <Typography variant="h6">{personalInfo.bio}</Typography>
+            <br />
+            <Typography variant="h6">{personalInfo.bio_suite}</Typography>
           </Box>
         </Box>
 
@@ -68,7 +72,14 @@ const AboutMe: React.FC = () => {
           <Typography variant="h3" gutterBottom my={4}>
             Compétences
           </Typography>
-          <Paper elevation={3} sx={{ p: 2 }}>
+          <Paper
+            elevation={3}
+            sx={{
+              p: 1,
+              width: "fit-content",
+              textAlign: "center",
+            }}
+          >
             <Typography>
               {personalInfo.skills.map((skill, index) => (
                 <Box
@@ -151,15 +162,6 @@ const AboutMe: React.FC = () => {
               </a>
             </Typography>
           </Box>
-          {/* <Avatar
-            alt={personalInfo.name}
-            src={Me}
-            sx={{
-              width: { md: 500, xs: 300 },
-              height: { md: 500, xs: 300 },
-              borderRadius: "10%",
-            }}
-          /> */}
         </Box>
       </MotionWrapper>
     </Container>

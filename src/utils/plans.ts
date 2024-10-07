@@ -1,6 +1,7 @@
 export interface Plan {
   type: "smart_signals" | "trading_academy" | "elite_performance";
   name: string;
+  active: boolean;
   monthlyPrice: number;
   annualPrice?: number;
   baseAnnualPrice?: number;
@@ -15,6 +16,7 @@ export const plans: Plan[] = [
   {
     type: "smart_signals",
     name: "Smart Signals ™",
+    active: true,
     monthlyPrice: 29.9,
     annualPrice: 200,
     baseAnnualPrice: 358,
@@ -33,32 +35,33 @@ export const plans: Plan[] = [
         "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP",
       picture: "assets/picture_signals.jpg",
       features: [
-        "📈 Alertes quotidiennes sur les meilleures opportunités de trading en temps réel",
-        "💱 2 à 5 signaux de qualité par semaine (70% win rate)",
-        "⚡️ Signaux simples à suivre avec des points d'entrée, de sortie et des stop-loss définis",
-        " 🔔 Notifications instantanées via télégram",
-        "🎯 Focus sur la validation des prop firms : passez les challenges avec aisance",
-        "Accès au groupe privé QNG Capital Gold",
+        "📈  Alertes quotidiennes sur les meilleures opportunités de trading en temps réel",
+        "💱  2 à 5 signaux de qualité par semaine (70% win rate)",
+        "⚡️   Signaux simples à suivre avec des points d'entrée, de sortie et des stop-loss définis",
+        "🔔  Notifications instantanées via télégram",
+        "🎯  Focus sur la validation des prop firms : passez les challenges avec aisance",
+        "🏆  Accès au groupe privé QNG Capital Gold",
       ],
     },
   },
   {
     type: "trading_academy",
     name: "QNG Trading Academy™",
+    active: false,
     monthlyPrice: 49.9,
     annualPrice: 490,
     baseAnnualPrice: 599,
     description:
       "Découvrez la meilleure stratégie pour trader sereinement et dominer les marchés grâce à la VRAIE smart money.",
     features: [
-      " 🎥 Accès aux modules vidéos (tous niveaux)",
-      " 📚 Accès E-books et supports",
-      " 🔍 Études de cas pratiques sur des trades réussis et ratés",
-      " 🛠 Outils exclusifs de backtesting",
-      "💡 Checklist quotidienne de prépa trading",
-      "📊 Analyse technique et fondamentale",
-      "🔒 Accès au groupe Discord d'apprentissage et échange avec d'autres membres",
-      "🧠 2 LIVE/mois",
+      "🎥  Accès aux modules vidéos (tous niveaux)",
+      "📚  Accès E-books et supports",
+      "🔍  Études de cas pratiques sur des trades réussis et ratés",
+      "🛠  Outils exclusifs de backtesting",
+      "💡  Checklist quotidienne de prépa trading",
+      "📊  Analyse technique et fondamentale",
+      "🔒  Accès au groupe Discord d'apprentissage et échange avec d'autres membres",
+      "🧠  2 LIVE/mois",
     ],
     details: {
       caption:
@@ -66,10 +69,10 @@ export const plans: Plan[] = [
       picture: "assets/phone_qng.png",
       features: [
         "🧩 Stratégies testées et validées par des traders financés",
-        " 📚 E-books et supports pédagogiques téléchargeables",
-        " 🎥 Accès à tout les modules vidéos (débutant/intermédiaire/avancé)",
-        " 🔍 Études de cas pratiques sur des trades réussis et ratés",
-        " 🛠 Outils exclusifs de backtesting pour affiner vos stratégies",
+        "📚 E-books et supports pédagogiques téléchargeables",
+        "🎥 Accès à tout les modules vidéos (débutant/intermédiaire/avancé)",
+        "🔍 Études de cas pratiques sur des trades réussis et ratés",
+        "🛠 Outils exclusifs de backtesting pour affiner vos stratégies",
         "💡 Checklist quotidienne de préparation pour optimiser chaque session de trading en PDF",
         "📊 Analyse technique et fondamentale : maîtrisez les deux aspects du marché",
         "🔒 Accès à un groupe Discord d'apprentissage pour échanger avec d'autres membres",
@@ -80,6 +83,7 @@ export const plans: Plan[] = [
   {
     type: "elite_performance",
     name: "Elite Performance ™",
+    active: false,
     monthlyPrice: 500,
     threeMonthPrice: 997,
     baseThreeMonthPrice: 1500,

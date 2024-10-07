@@ -5,15 +5,15 @@ import StripeCheckout from "../components/Course/Checkout";
 import { Plan, plans } from "../utils/plans";
 import theme from "../theme/theme";
 import Title from "../components/Title";
+import EmailCTA from "../components/emailCTA/EmailCTA";
 
 const ImageContainer = styled(Box)({
-  height: "600px",
-  flex: 2,
+  // flex: 2,
 });
 
 const ContentContainer = styled(Box)({
   flex: 2,
-  padding: "2rem",
+  padding: "1rem",
 });
 
 const CheckoutCard = styled(Box)({
@@ -46,19 +46,36 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
         <div>No data found for this plan</div>
       ) : (
         <>
-          <Title variant="h1" mt={8} mb={8} text={data.name} />
+          <Title
+            variant="h1"
+            sx={{ fontSize: { xs: "2.2rem" } }}
+            mt={8}
+            mb={8}
+            text={data.name}
+          />
 
           <Box
             display="flex"
             flexDirection={{ md: "row", xs: "column" }}
             gap={{ md: "3rem", xs: "0.5rem" }}
           >
-            <ImageContainer>
-              <img
+            <ImageContainer
+              sx={{
+                height: { md: "600px", xs: "300px" },
+                textAlign: "center",
+                flex: 2,
+              }}
+            >
+              <Box
+                component="img"
+                sx={{
+                  height: "100%",
+                  width: { xs: "60%", md: "100%" },
+                  objectFit: "contain",
+                  objectPosition: "center",
+                }}
+                alt={data.details?.picture}
                 src={`${import.meta.env.BASE_URL}${data.details?.picture}`}
-                height={"100%"}
-                width={"100%"}
-                style={{ objectFit: "contain" }}
               />
             </ImageContainer>
 
@@ -68,27 +85,55 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
                 <span style={{ fontSize: "18px" }}>par mois</span>
               </Typography>
               <Typography
-                fontWeight={400}
+                fontWeight={700}
                 color={theme.palette.secondary.main}
                 gutterBottom
                 my={6}
               >
                 {data.description}
               </Typography>
-              {data.details?.features.map((feature) => (
-                <Typography variant="body1" mt={0.7}>
-                  {feature}
-                </Typography>
-              ))}
-              <CheckoutCard>
-                <Typography variant="h6" gutterBottom>
-                  Prêts à devenir des traders confirmés ?
-                </Typography>
+              {data.details?.features.map((feature, i) => {
+                const emoji = feature.substring(0, 2);
+                const text = feature.substring(2);
 
-                <StripeCheckout
-                  price={Number(price)}
-                  onSuccess={() => console.log("success, callback")}
-                />
+                return (
+                  <Box mt={0.7} key={i}>
+                    <Typography
+                      variant="h6"
+                      component="span"
+                      style={{ marginRight: "16px" }}
+                    >
+                      {emoji}
+                    </Typography>
+                    <Typography variant="body1" component="span">
+                      {text}
+                    </Typography>
+                  </Box>
+                );
+              })}
+              <CheckoutCard>
+                {data.active ? (
+                  <>
+                    <Typography variant="h6" gutterBottom>
+                      Prêts à devenir des traders confirmés ?
+                    </Typography>
+                    <StripeCheckout
+                      price={Number(price)}
+                      onSuccess={() => console.log("success, callback")}
+                    />{" "}
+                  </>
+                ) : (
+                  <div>
+                    Offre disponible très prochainement, abonnez-vous pour ne
+                    pas manquer sa sortie
+                    <EmailCTA
+                      buttonTitle="S'abonner"
+                      modalTitle="S'abonner pour ne rien manquer"
+                      modalCaption="La formation QNG Trading Academy et Elite Performance sortira en avant première pour les abonnés."
+                      from={`page: ${data.name}`}
+                    />
+                  </div>
+                )}
               </CheckoutCard>
             </ContentContainer>
           </Box>

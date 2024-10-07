@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Plans from "./pages/Plans";
 import Contact from "./pages/Contact";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import Layout from "./components/Layout";
@@ -37,7 +36,6 @@ const App: React.FC = () => {
               path="elite_performance"
               element={<PlanDetail type="elite_performance" />}
             />
-            <Route path="/plans" element={<Plans />}></Route>
             <Route path="/contact" element={<Contact />} />{" "}
             <Route path="/ebook/free" element={<EbookFree />} />
             <Route path="/about-me" element={<AboutMe />} />

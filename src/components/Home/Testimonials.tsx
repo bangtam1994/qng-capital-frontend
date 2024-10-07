@@ -1,11 +1,4 @@
-import {
-  Box,
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Card, CardContent, Typography, useTheme } from "@mui/material";
 import { testimonials } from "../../utils/testimonials";
 import Slider from "react-slick";
 import MotionWrapper from "../MotionWrapper";
@@ -22,6 +15,7 @@ const TestimonialsCarousel: React.FC = () => {
     autoplaySpeed: 3000,
     pauseOnHover: true,
     centerMode: true,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1200,
@@ -59,13 +53,13 @@ const TestimonialsCarousel: React.FC = () => {
         gutterBottom
         color={"rgb(230, 230, 230)"}
         lineHeight={"1.3em"}
-        sx={{ fontSize: { xs: 60, md: 70 } }}
+        sx={{ fontSize: { xs: 50, md: 70 } }}
       >
         Témoignages
       </Typography>
       <Typography
         align="center"
-        marginTop={"-70px"}
+        marginTop={{ md: "-70px", xs: "-40px" }}
         fontSize={36}
         fontWeight={700}
         lineHeight={"1.3em"}
@@ -103,12 +97,6 @@ const TestimonialsCarousel: React.FC = () => {
                   height: "200px",
                 }}
               >
-                <CardMedia
-                  component="img"
-                  src={`${import.meta.env.BASE_URL}${testimonial.image}`}
-                  alt={testimonial.name}
-                  sx={{ borderRadius: "50%", width: 100, height: 100, mb: 2 }}
-                />
                 <CardContent>
                   <Typography variant="h6" component="div" gutterBottom>
                     {testimonial.name}

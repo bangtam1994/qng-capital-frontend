@@ -18,7 +18,7 @@ const GradientAccordion = styled(Accordion)<{
   isLast?: boolean;
 }>(() => ({
   background:
-    "linear-gradient(90deg, rgba(41,2,215,1) 0%, rgba(63,0,163,1) 0%, rgba(0,148,131,1) 58%, rgba(30,166,114,1) 100%, rgba(138,196,246,1) 100%);",
+    "linear-gradient(90deg, rgba(95,0,195,1) 0%, rgba(0,148,129,1) 74%, rgba(165,238,187,1) 100%, rgba(255,255,255,1) 100%, rgba(255,255,255,1) 100%, rgba(138,196,246,1) 100%, rgba(255,255,255,1) 100%, rgba(155,206,255,1) 100%)",
   borderRadius: "5px",
   border: "none",
   transition: "background-color 0.3s ease",
@@ -80,14 +80,15 @@ const FAQPage = () => {
         >
           FAQ
         </Typography>
+
         <Title
           text="Les questions les plus fréquentes"
           align="center"
-          marginTop={"-70px"}
           fontSize={36}
           fontWeight={700}
           lineHeight={"1.3em"}
           zIndex={10000000}
+          textColor="linear-gradient(90deg, rgba(46,0,249,1) 0%, rgba(205,0,255,1) 0%, rgba(0,255,226,1) 58%, rgba(27,190,128,1) 100%)"
         />
 
         <Box margin={"80px 0px"}>

@@ -17,21 +17,23 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Logo from "../assets/QNG_logo.svg";
 import { useTheme } from "@mui/material/styles";
-import LocalOfferIcon from "@mui/icons-material/LocalOffer";
-import ContactsIcon from "@mui/icons-material/Contacts";
 import MenuIcon from "@mui/icons-material/Menu";
 import GradientButton from "./GradientButton";
 import CloseIcon from "@mui/icons-material/Close";
+import EbookIcon from "../assets/ebook_icon.png";
+import MeIcon from "../assets/user.png";
+
+import HomeIcon from "../assets/home.png";
 
 interface Props {
   windowProp?: () => Window;
 }
 const pages = [
-  // { name: "plans", to: "plans" },
-  // { name: "testimony", to: "testimony" },
-  { name: "Qui suis-je", to: "about-me" },
-  { name: "E-Book Gratuit", to: "ebook/free" },
+  { name: "Qui suis-je", to: "about-me", icon: MeIcon },
+  { name: "E-Book Gratuit", to: "ebook/free", icon: EbookIcon },
 ];
+
+const pagesMobile = [...pages, { name: "Accueil", to: "", icon: HomeIcon }];
 
 const Header: React.FC = ({ windowProp }: Props) => {
   const { t } = useTranslation();
@@ -268,12 +270,12 @@ const Header: React.FC = ({ windowProp }: Props) => {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                marginTop: "3rem",
+                marginTop: "5rem",
                 height: "100%",
                 gap: "2rem",
               }}
             >
-              {pages.map((page, index) => (
+              {pagesMobile.map((page) => (
                 <ListItem
                   key={page.name}
                   disablePadding
@@ -284,11 +286,19 @@ const Header: React.FC = ({ windowProp }: Props) => {
                 >
                   <ListItemButton>
                     <ListItemIcon>
-                      {index % 2 !== 0 ? <LocalOfferIcon /> : <ContactsIcon />}
+                      <img src={page.icon} width={"40px"} height={"40px"} />
                     </ListItemIcon>
                     <ListItemText
                       primary={page.name}
-                      primaryTypographyProps={{ style: { fontSize: "1.1rem" } }}
+                      primaryTypographyProps={{
+                        style: {
+                          fontSize: "1.1rem",
+                          fontWeight: 600,
+                          marginLeft: "1.5rem",
+                          letterSpacing: "2px",
+                          textTransform: "uppercase",
+                        },
+                      }}
                     />
                   </ListItemButton>
                 </ListItem>

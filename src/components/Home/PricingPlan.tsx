@@ -71,7 +71,7 @@ const PricingPlans: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const notMainColor = "#F3F4F6";
+  const notMainColor = "#fbfbfc";
   const mainColor = "#0db595";
   const backgroundColor = "#F3F4F6";
 
@@ -148,7 +148,7 @@ const PricingPlans: React.FC = () => {
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
                   // borderColor: plan.type === "trading_academy" ? mainColor : notMainColor,
                   border: `2px solid ${
-                    plan.type === "trading_academy" ? mainColor : notMainColor
+                    plan.type === "smart_signals" ? mainColor : notMainColor
                   }`,
                   backgroundColor: notMainColor,
                   color: "black",
@@ -287,22 +287,26 @@ const PricingPlans: React.FC = () => {
                   <CustomButton
                     buttonType="secondary"
                     variant="outlined"
+                    disabled={!plan.active}
                     sx={{
                       color:
-                        plan.type === "trading_academy"
+                        plan.type === "smart_signals"
                           ? notMainColor
                           : mainColor,
                       backgroundColor:
-                        plan.type === "trading_academy"
+                        plan.type === "smart_signals"
                           ? mainColor
                           : notMainColor,
-                      border: `2px solid ${
-                        plan.type === "trading_academy" ? mainColor : mainColor
-                      }`,
+                      border:
+                        plan.type === "smart_signals"
+                          ? "none"
+                          : `2px solid ${mainColor}`,
                       fontWeight: 700,
                     }}
                   >
-                    {t("offers.cta").toUpperCase()}
+                    {plan.active
+                      ? t("offers.cta").toUpperCase()
+                      : "Arrive prochainement"}
                   </CustomButton>
                 </Box>
               </Card>
