@@ -6,6 +6,7 @@ import { Plan, plans } from "../utils/plans";
 import theme from "../theme/theme";
 import Title from "../components/Title";
 import EmailCTA from "../components/emailCTA/EmailCTA";
+import TestimonialsCarousel from "../components/Home/Testimonials";
 
 const ImageContainer = styled(Box)({
   // flex: 2,
@@ -123,20 +124,30 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
                     />{" "}
                   </>
                 ) : (
-                  <div>
-                    Offre disponible très prochainement, abonnez-vous pour ne
-                    pas manquer sa sortie
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span>
+                      Offre disponible très prochainement, inscrivez-vous sur la
+                      liste d'attente pour ne pas manquer sa sortie !
+                    </span>
                     <EmailCTA
                       buttonTitle="S'abonner"
-                      modalTitle="S'abonner pour ne rien manquer"
+                      modalTitle="Place VIP pour les abonnés"
                       modalCaption="La formation QNG Trading Academy et Elite Performance sortira en avant première pour les abonnés."
                       from={`page: ${data.name}`}
                     />
-                  </div>
+                  </Box>
                 )}
               </CheckoutCard>
             </ContentContainer>
           </Box>
+
+          <TestimonialsCarousel />
         </>
       )}
     </Container>

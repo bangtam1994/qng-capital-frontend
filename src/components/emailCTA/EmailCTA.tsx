@@ -55,7 +55,6 @@ const EmailCTA = ({
     e.preventDefault();
 
     setLoading(true);
-    console.log(email);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/user/suscribe`,
@@ -84,16 +83,20 @@ const EmailCTA = ({
         variant="contained"
         color="primary"
         onClick={handleOpen}
-        sx={{ mt: 2 }}
+        sx={{ mt: 2, width: "fit-content" }}
       >
         {buttonTitle}
       </CustomButton>
       <Modal open={open} onClose={handleClose}>
         <Box sx={modalStyle}>
           {successMessage ? (
-            <Box textAlign={"center"}>
+            <Box textAlign={"center"} alignContent={"center"} height={"100%"}>
               <Typography variant="body1" gutterBottom my={2}>
-                Merci ! Tu recevras toutes les news de QNG Capital Trading très
+                Merci !{" "}
+                {from !== "page: Homepage newsletter" &&
+                  "Tu es sur liste d'attente pour la formation. "}
+                <br />
+                Tu recevras toutes les news de QNG Capital Trading très
                 rapidement sur ta boîte mail !
               </Typography>{" "}
               <CustomButton

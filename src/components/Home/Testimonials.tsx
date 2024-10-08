@@ -1,18 +1,28 @@
-import { Box, Card, CardContent, Typography, useTheme } from "@mui/material";
+import { Box, Card, CardContent, styled, Typography } from "@mui/material";
 import { testimonials } from "../../utils/testimonials";
 import Slider from "react-slick";
 import MotionWrapper from "../MotionWrapper";
+import { useState } from "react";
 
 const TestimonialsCarousel: React.FC = () => {
-  const theme = useTheme();
+  const [clickedCardId, setClickedCardId] = useState<number | null>(null);
+  const handleClick = (id: number) => {
+    setClickedCardId((prevId) => (prevId === id ? null : id));
+  };
 
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
+    zIndex: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
+    beforeChange: () => {
+      if (clickedCardId !== null) {
+        return false; // Prevent the slider from changing
+      }
+    },
     pauseOnHover: true,
     centerMode: true,
     arrows: false,
@@ -20,8 +30,8 @@ const TestimonialsCarousel: React.FC = () => {
       {
         breakpoint: 1200,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           infinite: true,
           dots: true,
         },
@@ -29,9 +39,9 @@ const TestimonialsCarousel: React.FC = () => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
         },
       },
       {
@@ -66,7 +76,7 @@ const TestimonialsCarousel: React.FC = () => {
       >
         élèves
       </Typography>
-      <Box margin={"80px 0px"}>
+      <Box margin={"80px 0px"} height={"480px"}>
         <Slider {...settings}>
           {testimonials.map((testimonial) => (
             <Box
@@ -75,37 +85,49 @@ const TestimonialsCarousel: React.FC = () => {
                 px: 2,
                 display: "flex",
                 justifyContent: "center",
-                height: "300px",
+                alignItems: "center",
+                height: { md: "480px", xs: "400px" },
+                zIndex: 10,
               }}
             >
-              <Card
+              <StyledCard
+                key={testimonial.id}
+                expanded={clickedCardId === testimonial.id}
+                onClick={() => handleClick(testimonial.id)}
+                onMouseLeave={() => clickedCardId && setClickedCardId(null)}
                 sx={{
-                  transition: "transform 0.3s ease-in-out",
-                  "&:hover": {
-                    transform: "scale(1.1)",
-                  },
-
-                  padding: "1rem",
-                  borderRadius: "16px",
-                  boxShadow: "0 4px 12px rgba(0, 0.6, 0.6, 0.2)",
-                  display: "flex",
-                  alignItems: "center",
-                  m: 1,
-                  backgroundColor: theme.palette.background.default,
-                  width: "100%",
-                  maxWidth: 400,
-                  height: "200px",
+                  height: { md: "400px", xs: "300px" },
+                  width: { md: "500px", xs: "200px" },
                 }}
               >
-                <CardContent>
+                <CardContent
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    padding: "0.5rem",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
                   <Typography variant="h6" component="div" gutterBottom>
                     {testimonial.name}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    "{testimonial.text}"
-                  </Typography>
+
+                  <Box
+                    component="img"
+                    sx={{
+                      height: { md: "300px", xs: "200px" },
+                      width: { md: "300px", xs: "200px" },
+                      objectFit: "contain",
+                      objectPosition: "center",
+                      borderRadius: "10px",
+                    }}
+                    alt={testimonial.image}
+                    src={`${import.meta.env.BASE_URL}${testimonial.image}`}
+                  />
                 </CardContent>
-              </Card>
+              </StyledCard>
             </Box>
           ))}
         </Slider>
@@ -113,5 +135,35 @@ const TestimonialsCarousel: React.FC = () => {
     </MotionWrapper>
   );
 };
+interface StyledCardProps {
+  expanded: boolean;
+}
+const StyledCard = styled(Card)<StyledCardProps>(({ theme, expanded }) => ({
+  position: "absolute",
+  transition: "transform 0.3s, z-index 0.3s",
+  transform: expanded ? "scale(1.2)" : "scale(1)",
+  zIndex: expanded ? 100000 : 100, // Bring the card to front when expanded
+  cursor: "pointer",
+  "&:hover": {
+    transform: expanded ? "scale(1.8)" : "scale(1.1)",
+    // Slightly enlarge on hover if not expanded
+  },
 
+  // transition: "transform 0.3s ease-in-out",
+  // "&:hover": {
+  //   transform: "scale(1.1)",
+  // },
+  // transform: expanded ? "scale(1.5)" : "scale(1)",
+  padding: "1rem",
+  borderRadius: "16px",
+  boxShadow: "0 4px 12px rgba(0, 0.6, 0.6, 0.2)",
+  display: "flex",
+  alignItems: "center",
+  backgroundColor: theme.palette.background.default,
+  // width: "100%",
+  maxWidth: 500,
+  height: "330px",
+  // cursor: "pointer",
+  // zIndex: 100000000,
+}));
 export default TestimonialsCarousel;
