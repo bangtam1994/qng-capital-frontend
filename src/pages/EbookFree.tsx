@@ -13,6 +13,7 @@ import Ebook from "../assets/ebook.png";
 import MotionWrapper from "../components/MotionWrapper";
 import InspirationalMe from "../components/Home/InspirationalMe";
 import { useNavigate } from "react-router-dom";
+import TestimonialsCarousel from "../components/Home/Testimonials";
 
 const EbookFree: React.FC = () => {
   const navigate = useNavigate();
@@ -256,6 +257,9 @@ const EbookFree: React.FC = () => {
       <Box sx={{ width: "100vw" }}>
         <MotionWrapper>
           <InspirationalMe />
+        </MotionWrapper>
+        <MotionWrapper>
+          <TestimonialsCarousel />
         </MotionWrapper>
       </Box>
     </>
