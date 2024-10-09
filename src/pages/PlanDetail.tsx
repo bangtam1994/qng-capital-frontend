@@ -38,7 +38,7 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
     const planData = plans.find((plan) => plan.type === type);
     if (!planData) return;
     setData(planData);
-    setPrice(planData.monthlyPrice);
+    setPrice(planData?.monthlyPrice);
   }, [type]);
 
   return (
@@ -81,10 +81,12 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
             </ImageContainer>
 
             <ContentContainer textAlign={{ md: "start", xs: "center" }}>
-              <Typography variant="h2" color="primary" gutterBottom>
-                {data.monthlyPrice.toFixed(2)} €{" "}
-                <span style={{ fontSize: "18px" }}>par mois</span>
-              </Typography>
+              {data.monthlyPrice > 0 && (
+                <Typography variant="h2" color="primary" gutterBottom>
+                  {data.monthlyPrice.toFixed(2)} €{" "}
+                  <span style={{ fontSize: "18px" }}>par mois</span>
+                </Typography>
+              )}
               <Typography
                 fontWeight={700}
                 color={theme.palette.secondary.main}

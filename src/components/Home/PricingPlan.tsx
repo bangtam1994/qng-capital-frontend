@@ -73,7 +73,7 @@ const PricingPlans: React.FC = () => {
 
   const notMainColor = "#fbfbfc";
   const mainColor = "#0db595";
-  const backgroundColor = "#F3F4F6";
+  const backgroundColor = "#0F1832";
 
   return (
     <Container
@@ -103,7 +103,7 @@ const PricingPlans: React.FC = () => {
             exclusive
             onChange={handlePricingChange}
             aria-label="pricing option"
-            color="secondary"
+            sx={{ backgroundColor: "white" }}
           >
             <ToggleButton
               value="monthly"
@@ -138,19 +138,23 @@ const PricingPlans: React.FC = () => {
                 variant="outlined"
                 onClick={() => navigate(`/${plan.type}`)}
                 sx={{
-                  width: { sm: "100%", xs: "90%" },
+                  width: {
+                    sm: "100%",
+                    xs: "90%",
+                  },
                   maxWidth: "400px",
-                  height: "100%",
+                  height: plan.type === "smart_signals" ? "100%" : "100%",
                   margin: "0 auto",
                   borderRadius: "16px",
                   padding: "2.5rem",
 
                   boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
                   // borderColor: plan.type === "trading_academy" ? mainColor : notMainColor,
-                  border: `2px solid ${
-                    plan.type === "smart_signals" ? mainColor : notMainColor
-                  }`,
-                  backgroundColor: notMainColor,
+                  // border: `4px solid ${
+                  //   plan.type === "smart_signals" ? mainColor : notMainColor
+                  // }`,
+                  backgroundColor:
+                    plan.type === "smart_signals" ? notMainColor : "100",
                   color: "black",
                   transition:
                     "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
@@ -192,71 +196,72 @@ const PricingPlans: React.FC = () => {
                         component="div"
                         gutterBottom
                         sx={{
-                          fontWeight:
-                            plan.type === "trading_academy" ? 700 : 500,
+                          fontWeight: 700,
                         }}
                       >
                         {plan.name}
                       </Typography>
 
                       {/* PRICE */}
-                      <motion.div
-                        key={pricingOption}
-                        initial={{ opacity: 0.3, scale: 0.9 }}
-                        animate={{ opacity: 0.9, scale: 1 }}
-                        transition={{ duration: 0.4 }}
-                      >
-                        <Box
-                          sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "baseline",
-                            mb: 2,
-                          }}
+                      {plan.monthlyPrice > 0 && (
+                        <motion.div
+                          key={pricingOption}
+                          initial={{ opacity: 0.3, scale: 0.9 }}
+                          animate={{ opacity: 0.9, scale: 1 }}
+                          transition={{ duration: 0.4 }}
                         >
-                          <Typography
-                            variant="h2"
+                          <Box
                             sx={{
-                              fontWeight: "bold",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "baseline",
+                              mb: 2,
                             }}
                           >
-                            {Number(
-                              pricingOption === "annual"
-                                ? plan.type !== "elite_performance"
-                                  ? plan.annualPrice
-                                  : plan.threeMonthPrice
-                                : plan.monthlyPrice
-                            ).toFixed(
-                              plan.type !== "elite_performance" ? 2 : 0
-                            )}
-                            €
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              fontSize: "0.75rem",
-                              marginBottom: 1,
-                            }}
-                            gutterBottom
-                          >
-                            {pricingOption === "annual" ? "/an" : "/mois"}
-                          </Typography>{" "}
-                        </Box>
-                        {pricingOption === "annual" && (
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: theme.palette.grey[800],
-                            }}
-                          >
-                            Au lieu de{" "}
-                            {plan.type !== "elite_performance"
-                              ? plan.baseAnnualPrice
-                              : plan.baseThreeMonthPrice}{" "}
-                            €
-                          </Typography>
-                        )}
-                      </motion.div>
+                            <Typography
+                              variant="h2"
+                              sx={{
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {Number(
+                                pricingOption === "annual"
+                                  ? plan.type !== "elite_performance"
+                                    ? plan.annualPrice
+                                    : plan.threeMonthPrice
+                                  : plan.monthlyPrice
+                              ).toFixed(
+                                plan.type !== "elite_performance" ? 2 : 0
+                              )}
+                              €
+                            </Typography>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                fontSize: "0.75rem",
+                                marginBottom: 1,
+                              }}
+                              gutterBottom
+                            >
+                              {pricingOption === "annual" ? "/an" : "/mois"}
+                            </Typography>{" "}
+                          </Box>
+                          {pricingOption === "annual" && (
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                color: theme.palette.grey[800],
+                              }}
+                            >
+                              Au lieu de{" "}
+                              {plan.type !== "elite_performance"
+                                ? plan.baseAnnualPrice
+                                : plan.baseThreeMonthPrice}{" "}
+                              €
+                            </Typography>
+                          )}
+                        </motion.div>
+                      )}
 
                       <Typography variant="body2" margin={"22px 0px"}>
                         {plan.description}

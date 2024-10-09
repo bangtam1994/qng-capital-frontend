@@ -14,37 +14,6 @@ export interface Plan {
 
 export const plans: Plan[] = [
   {
-    type: "smart_signals",
-    name: "Smart Signals ™",
-    active: true,
-    monthlyPrice: 29.9,
-    annualPrice: 200,
-    baseAnnualPrice: 358,
-    description:
-      "Suivez, gagnez et validez des prop firms avec des signaux de trading ultra-précis.",
-
-    features: [
-      "📈  Alertes quotidiennes sur les meilleures opportunités de trading ",
-      "💱  2 à 5 signaux de qualité par semaine (70% win rate)",
-      "🔔  Notifications instantanées via télégram",
-      "🎯  Focus sur la validation des prop firms : passez les challenges avec aisance",
-      "🏆  Accès au groupe privé QNG Capital Gold",
-    ],
-    details: {
-      caption:
-        "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP",
-      picture: "assets/picture_signals.jpg",
-      features: [
-        "📈  Alertes quotidiennes sur les meilleures opportunités de trading en temps réel",
-        "💱  2 à 5 signaux de qualité par semaine (70% win rate)",
-        "⚡️   Signaux simples à suivre avec des points d'entrée, de sortie et des stop-loss définis",
-        "🔔  Notifications instantanées via télégram",
-        "🎯  Focus sur la validation des prop firms : passez les challenges avec aisance",
-        "🏆  Accès au groupe privé QNG Capital Gold",
-      ],
-    },
-  },
-  {
     type: "trading_academy",
     name: "QNG Trading Academy™",
     active: false,
@@ -81,12 +50,43 @@ export const plans: Plan[] = [
     },
   },
   {
+    type: "smart_signals",
+    name: "Smart Signals ™",
+    active: true,
+    monthlyPrice: 29.9,
+    annualPrice: 200,
+    baseAnnualPrice: 358,
+    description:
+      "Suivez, gagnez et validez des prop firms avec des signaux de trading ultra-précis.",
+
+    features: [
+      "📈  Alertes quotidiennes sur les meilleures opportunités de trading ",
+      "💱  2 à 5 signaux de qualité par semaine (70% win rate)",
+      "🔔  Notifications instantanées via télégram",
+      "🎯  Focus sur la validation des prop firms : passez les challenges avec aisance",
+      "🏆  Accès au groupe privé QNG Capital Gold",
+    ],
+    details: {
+      caption:
+        "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP",
+      picture: "assets/picture_signals.jpg",
+      features: [
+        "📈  Alertes quotidiennes sur les meilleures opportunités de trading en temps réel",
+        "💱  2 à 5 signaux de qualité par semaine (70% win rate)",
+        "⚡️   Signaux simples à suivre avec des points d'entrée, de sortie et des stop-loss définis",
+        "🔔  Notifications instantanées via télégram",
+        "🎯  Focus sur la validation des prop firms : passez les challenges avec aisance",
+        "🏆  Accès au groupe privé QNG Capital Gold",
+      ],
+    },
+  },
+  {
     type: "elite_performance",
     name: "Elite Performance ™",
     active: false,
-    monthlyPrice: 500,
-    threeMonthPrice: 997,
-    baseThreeMonthPrice: 1500,
+    monthlyPrice: 0,
+    threeMonthPrice: 0,
+    baseThreeMonthPrice: 0,
     description:
       "Accélérez votre parcours de trader avec un mentorat personnalisé pour atteindre vos objectifs.",
     features: [

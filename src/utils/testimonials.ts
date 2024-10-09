@@ -1,7 +1,13 @@
 export const testimonials = [
   {
+    id: 5,
+    name: "Wil",
+    text: "Les formations sont très bien structurées et les résultats sont visibles rapidement.",
+    image: "assets/testimonial_5.jpg",
+  },
+  {
     id: 1,
-    name: "Jean Dupont",
+    name: "Max",
     text: "Super service ! Les formations sont très instructives et bien expliquées.",
     image: "assets/testimonial_1.jpg",
   },
@@ -19,16 +25,11 @@ export const testimonials = [
   },
   {
     id: 4,
-    name: "Jordana",
+    name: "Jordan",
     text: "Le coaching personnalisé a vraiment fait la différence dans ma carrière de trader.",
     image: "assets/testimonial_4.jpg",
   },
-  {
-    id: 5,
-    name: "Wil",
-    text: "Les formations sont très bien structurées et les résultats sont visibles rapidement.",
-    image: "assets/testimonial_5.jpg",
-  },
+
   {
     id: 6,
     name: "Max",
@@ -43,13 +44,13 @@ export const testimonials = [
   },
   {
     id: 8,
-    name: "Ykn",
+    name: "Y.",
     text: "Les formations sont très bien structurées et les résultats sont visibles rapidement.",
     image: "assets/testimonial_8.jpg",
   },
   {
     id: 9,
-    name: "Anonyme",
+    name: "T.",
     text: "Les formations sont très bien structurées et les résultats sont visibles rapidement.",
     image: "assets/testimonial_9.jpg",
   },
