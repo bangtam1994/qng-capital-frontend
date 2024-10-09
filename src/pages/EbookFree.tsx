@@ -62,7 +62,7 @@ const EbookFree: React.FC = () => {
   }, []);
   return (
     <>
-      <Box sx={{ backgroundColor: "#F5F6F9", width: "100vw" }}>
+      <Box sx={{ backgroundColor: "white", width: "100vw" }}>
         <MotionWrapper>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Typography
@@ -210,7 +210,7 @@ const EbookFree: React.FC = () => {
                   src={Ebook}
                   height={"100%"}
                   width={"100%"}
-                  style={{ objectFit: "contain" }}
+                  style={{ objectFit: "contain", alignContent: "center" }}
                 />
               </Box>
             </Box>

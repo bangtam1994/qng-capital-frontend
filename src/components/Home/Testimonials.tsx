@@ -13,9 +13,8 @@ const TestimonialsCarousel: React.FC = () => {
   const settings = {
     dots: true,
     infinite: true,
-    // slidesToShow: 1,
-    // slidesToScroll: 1,
-
+    slidesToShow: 1,
+    slidesToScroll: 1,
     // zIndex: 1,
     // autoplay: true,
     // autoplaySpeed: 5000,
@@ -77,13 +76,13 @@ const TestimonialsCarousel: React.FC = () => {
         élèves
       </Typography>
       <Box margin={"80px 0px"}>
-        <Slider {...settings}>
+        <Slider {...settings} arrows={false}>
           {testimonials.map((testimonial) => (
             <Box
               key={testimonial.id}
               sx={{
                 px: 2,
-                width: "100%",
+                // width: "100%",
                 // backgroundColor: "blue",
                 display: "flex",
                 justifyContent: "center",
