@@ -91,7 +91,7 @@ const PricingPlans: React.FC = () => {
       <MotionWrapper maxWidth={false}>
         <Title variant="h2" text="Nos offres du moment" />
 
-        <Typography align="center" paragraph margin={4}>
+        <Typography align="center" paragraph margin={4} color="white">
           Choisissez votre abonnement à QNG Capital qui vous correspond le
           mieux, et faites monter votre capital aujourd'hui.
         </Typography>
@@ -104,12 +104,13 @@ const PricingPlans: React.FC = () => {
             onChange={handlePricingChange}
             aria-label="pricing option"
             sx={{ backgroundColor: "white" }}
+            color="warning"
           >
             <ToggleButton
               value="monthly"
               aria-label="monthly pricing"
               sx={{
-                borderRadius: "24px 0px 0px 24px",
+                // borderRadius: "24px 0px 0px 24px",
                 padding: "12px 22px",
               }}
             >
@@ -119,7 +120,7 @@ const PricingPlans: React.FC = () => {
               value="annual"
               aria-label="annual pricing"
               sx={{
-                borderRadius: " 0px 24px 24px 0px",
+                // borderRadius: " 0px 24px 24px 0px",
                 padding: "12px 22px",
               }}
             >
