@@ -1,7 +1,8 @@
 export interface Plan {
-  type: "smart_signals" | "trading_academy" | "elite_performance";
+  type: PlanType;
   name: string;
   active: boolean;
+  priceId: string;
   monthlyPrice: number;
   annualPrice?: number;
   baseAnnualPrice?: number;
@@ -12,14 +13,23 @@ export interface Plan {
   details?: { caption: string; picture: string; features: string[] };
 }
 
+export enum PlanType {
+  SMART_SIGNALS = "smart_signals",
+  TRADING_ACADEMY = "trading_academy",
+  ELITE_PERFORMANCE = "elite_performance",
+}
 export const plans: Plan[] = [
   {
-    type: "trading_academy",
+    type: PlanType.TRADING_ACADEMY,
     name: "QNG Trading Academy™",
     active: false,
-    monthlyPrice: 49.9,
-    annualPrice: 490,
-    baseAnnualPrice: 599,
+    priceId: "price_1Q8mnAJ4HMnfuly583NQ8VIo",
+    // monthlyPrice: 49.9,
+    // annualPrice: 490,
+    // baseAnnualPrice: 599,
+    monthlyPrice: 0,
+    threeMonthPrice: 0,
+    baseThreeMonthPrice: 0,
     description:
       "Découvrez la meilleure stratégie pour trader sereinement et dominer les marchés grâce à la VRAIE smart money.",
     features: [
@@ -50,9 +60,10 @@ export const plans: Plan[] = [
     },
   },
   {
-    type: "smart_signals",
+    type: PlanType.SMART_SIGNALS,
     name: "Smart Signals ™",
     active: true,
+    priceId: "price_1Q8mIsJ4HMnfuly54F57827t",
     monthlyPrice: 29.9,
     annualPrice: 200,
     baseAnnualPrice: 358,
@@ -81,9 +92,10 @@ export const plans: Plan[] = [
     },
   },
   {
-    type: "elite_performance",
+    type: PlanType.ELITE_PERFORMANCE,
     name: "Elite Performance ™",
     active: false,
+    priceId: "price_1Q8mp9J4HMnfuly5N59m8sJ3",
     monthlyPrice: 0,
     threeMonthPrice: 0,
     baseThreeMonthPrice: 0,

@@ -7,6 +7,8 @@ import theme from "../theme/theme";
 import Title from "../components/Title";
 import EmailCTA from "../components/emailCTA/EmailCTA";
 import TestimonialsCarousel from "../components/Home/Testimonials";
+import { useNavigate } from "react-router-dom";
+import CustomButton from "../components/Button";
 
 const ImageContainer = styled(Box)({
   // flex: 2,
@@ -33,7 +35,8 @@ const CheckoutCard = styled(Box)({
 const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
   const [price, setPrice] = useState(0);
   const [data, setData] = useState<Plan>();
-
+  const [paymentSucess, setPaymentSuccess] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     const planData = plans.find((plan) => plan.type === type);
     if (!planData) return;
@@ -117,13 +120,35 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
               <CheckoutCard>
                 {data.active ? (
                   <>
-                    <Typography variant="h6" gutterBottom>
-                      Prêts à devenir des traders confirmés ?
-                    </Typography>
-                    <StripeCheckout
-                      price={Number(price)}
-                      onSuccess={() => console.log("success, callback")}
-                    />{" "}
+                    {!paymentSucess ? (
+                      <>
+                        <Typography variant="h6" gutterBottom>
+                          Prêts à devenir des traders confirmés ?
+                        </Typography>
+                        <StripeCheckout
+                          price={Number(price)}
+                          priceId={data.priceId}
+                          product={data.type}
+                          onSuccess={() => {
+                            setPaymentSuccess(true);
+                          }}
+                        />
+                      </>
+                    ) : (
+                      <Box>
+                        <Typography variant="h6" mb={4}>
+                          Ton paiement a bien été reçu. Consulte tes emails pour
+                          recevoir le détail de ton offre !
+                        </Typography>
+                        <CustomButton
+                          onClick={() => {
+                            navigate("/");
+                          }}
+                        >
+                          Retour à l'accueil
+                        </CustomButton>
+                      </Box>
+                    )}
                   </>
                 ) : (
                   <Box

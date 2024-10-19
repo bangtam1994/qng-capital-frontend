@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   Elements,
@@ -6,36 +6,76 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { Button, Box } from "@mui/material";
+import { Button, Box, TextField, CircularProgress } from "@mui/material";
+import axios from "axios";
+import { PlanType } from "../../utils/plans";
 
-const stripePromise = loadStripe("YOUR_PUBLIC_KEY_HERE");
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
-const CheckoutForm: React.FC<{ price: number; onSuccess: () => void }> = ({
-  price,
-  onSuccess,
-}) => {
+const CheckoutForm: React.FC<{
+  price: number;
+  priceId: string;
+  product: PlanType;
+  onSuccess: () => void;
+}> = ({ priceId, price, onSuccess, product }) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const stripe = useStripe();
   const elements = useElements();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
+    setLoading(true);
     if (!stripe || !elements) return;
+    // create a payment method
 
-    const { error, paymentIntent } = await stripe.confirmCardPayment(
-      "YOUR_CLIENT_SECRET_HERE",
-      {
-        payment_method: {
-          card: elements.getElement(CardElement)!,
+    try {
+      const paymentMethod = await stripe.createPaymentMethod({
+        type: "card",
+        card: elements.getElement(CardElement)!,
+        billing_details: {
+          name: firstName + lastName,
+          email,
         },
-      }
-    );
+      });
 
-    if (error) {
-      console.error("Payment failed:", error);
-    } else if (paymentIntent && paymentIntent.status === "succeeded") {
-      console.log("Payment successful:", paymentIntent);
-      onSuccess();
+      if (paymentMethod.error) throw new Error(paymentMethod.error.message);
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/payment/subscription`,
+        {
+          paymentMethod: paymentMethod?.paymentMethod?.id,
+          firstName,
+          lastName,
+          email,
+          priceId,
+          amount: price,
+          product,
+        }
+      );
+
+      console.log("response from axios>", response);
+      if (response.status !== 201) throw new Error(response.data);
+
+      const confirmPayment = await stripe?.confirmCardPayment(
+        response.data.clientSecret
+      );
+      if (confirmPayment.error) {
+        console.error("Payment failed:", confirmPayment.error.message);
+        alert(confirmPayment.error.message);
+      } else if (
+        confirmPayment &&
+        confirmPayment.paymentIntent.status === "succeeded"
+      ) {
+        console.log("Payment successful:", confirmPayment.paymentIntent);
+        setLoading(false);
+        onSuccess();
+      }
+    } catch (error) {
+      alert(error);
+      setLoading(false);
     }
   };
 
@@ -47,28 +87,76 @@ const CheckoutForm: React.FC<{ price: number; onSuccess: () => void }> = ({
       }}
       onSubmit={handleSubmit}
     >
-      <CardElement />
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        disabled={!stripe}
-        size="large"
-        sx={{ marginTop: "2rem" }}
+      <Box
+        sx={{
+          m: { md: 4, xs: 2 },
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+        }}
       >
-        Payer {price.toFixed(2)} €
-      </Button>
+        {/* <ExpressCheckoutElement
+        onConfirm={onConfirm}
+      /> */}
+        <CardElement />
+        <TextField
+          label="Email"
+          variant="outlined"
+          fullWidth
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          required
+        />
+        <TextField
+          label="Nom"
+          variant="outlined"
+          name="lastName"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          required
+        />
+        <TextField
+          label="Prénom"
+          variant="outlined"
+          name="firstName"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          required
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          disabled={loading}
+          size="large"
+          sx={{ marginTop: "2rem" }}
+        >
+          {loading ? (
+            <CircularProgress size={24} />
+          ) : (
+            <span>Payer {price.toFixed(2)} €</span>
+          )}
+        </Button>
+      </Box>
     </Box>
   );
 };
 
-const StripeCheckout: React.FC<{ price: number; onSuccess: () => void }> = ({
-  price,
-  onSuccess,
-}) => {
+const StripeCheckout: React.FC<{
+  price: number;
+  priceId: string;
+  product: PlanType;
+  onSuccess: () => void;
+}> = ({ price, priceId, onSuccess, product }) => {
   return (
     <Elements stripe={stripePromise}>
-      <CheckoutForm price={price} onSuccess={onSuccess} />
+      <CheckoutForm
+        price={price}
+        priceId={priceId}
+        onSuccess={onSuccess}
+        product={product}
+      />
     </Elements>
   );
 };
