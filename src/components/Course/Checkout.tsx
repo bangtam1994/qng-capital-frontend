@@ -6,9 +6,16 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { Button, Box, TextField, CircularProgress } from "@mui/material";
+import {
+  Button,
+  Box,
+  TextField,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import { PlanType } from "../../utils/plans";
+import { toast } from "sonner";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -64,7 +71,10 @@ const CheckoutForm: React.FC<{
       );
       if (confirmPayment.error) {
         console.error("Payment failed:", confirmPayment.error.message);
-        alert(confirmPayment.error.message);
+        toast.error(
+          confirmPayment.error.message ??
+            "Une erreur est survenue, votre paiement n'a pas été débité"
+        );
       } else if (
         confirmPayment &&
         confirmPayment.paymentIntent.status === "succeeded"
@@ -72,74 +82,100 @@ const CheckoutForm: React.FC<{
         console.log("Payment successful:", confirmPayment.paymentIntent);
         setLoading(false);
         onSuccess();
+
+        toast.success(
+          "Le paiement a bien été effectué ! Merci pour votre achat.",
+          {
+            style: {
+              backgroundColor: "#008042",
+              color: "#FFFFFF",
+            },
+          }
+        );
       }
     } catch (error) {
-      alert(error);
+      if (error instanceof Error) {
+        toast.error(`Échec du paiement : ${error.message}`, {
+          style: { backgroundColor: "#a80000" },
+        });
+      } else {
+        toast.error(
+          "Une erreur est survenue, veuillez contacter QNG par email pour confirmer votre paiement",
+          { style: { backgroundColor: "#a80000" } }
+        );
+      }
       setLoading(false);
     }
   };
 
   return (
-    <Box
-      component="form"
-      sx={{
-        marginTop: "22px",
-      }}
-      onSubmit={handleSubmit}
-    >
+    <>
       <Box
+        component="form"
         sx={{
-          m: { md: 4, xs: 2 },
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
+          marginTop: "22px",
         }}
+        onSubmit={handleSubmit}
       >
-        {/* <ExpressCheckoutElement
+        <Box
+          sx={{
+            m: { md: 4, xs: 2 },
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
+          {/* <ExpressCheckoutElement
         onConfirm={onConfirm}
       /> */}
-        <CardElement />
-        <TextField
-          label="Email"
-          variant="outlined"
-          fullWidth
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          required
-        />
-        <TextField
-          label="Nom"
-          variant="outlined"
-          name="lastName"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
-        <TextField
-          label="Prénom"
-          variant="outlined"
-          name="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          disabled={loading}
-          size="large"
-          sx={{ marginTop: "2rem" }}
-        >
-          {loading ? (
-            <CircularProgress size={24} />
-          ) : (
-            <span>Payer {price.toFixed(2)} €</span>
+          <CardElement />
+          <TextField
+            label="Email"
+            variant="outlined"
+            fullWidth
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            required
+          />
+          <TextField
+            label="Nom"
+            variant="outlined"
+            name="lastName"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+          <TextField
+            label="Prénom"
+            variant="outlined"
+            name="firstName"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={loading}
+            size="large"
+            sx={{ marginTop: "2rem" }}
+          >
+            {loading ? (
+              <CircularProgress size={24} />
+            ) : (
+              <span>Payer {price.toFixed(2)} €</span>
+            )}
+          </Button>
+          {loading && (
+            <Typography variant="caption">
+              Le paiement est en cours, veuillez patienter ...
+            </Typography>
           )}
-        </Button>
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

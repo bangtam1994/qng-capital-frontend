@@ -13,14 +13,27 @@ import TermsOfService from "./pages/TermsOfService";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import AboutMe from "./pages/AboutMe";
 import EbookFree from "./pages/EbookFree";
+import { Toaster } from "sonner";
 
 // import Témoignages from "./pages/Témoignages";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Normalize styles */}
+      <CssBaseline />
       <Router>
+        <Toaster
+          position="bottom-left"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              backgroundColor: "#333",
+              color: "#fff",
+              borderRadius: "8px",
+              padding: "16px",
+            },
+          }}
+        />
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
