@@ -80,7 +80,7 @@ export const plans: Plan[] = [
     details: {
       caption:
         "Vous aurez accès aux : Signaux, Canal Télégram privé, E-learning vidéos VIP",
-      picture: "assets/picture_signals.jpg",
+      picture: "assets/picture_signals.png",
       features: [
         "📈  Alertes quotidiennes sur les meilleures opportunités de trading en temps réel",
         "💱  2 à 5 signaux de qualité par semaine (70% win rate)",
