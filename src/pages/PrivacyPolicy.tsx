@@ -99,7 +99,7 @@ const PrivaryPolicy: React.FC = () => {
           Si vous avez des questions ou des préoccupations concernant cette
           Politique de Confidentialité, veuillez nous contacter à :{" "}
           <Link href="mailto:contact@qngcapital.com">
-            contact@qngcapital.com"
+            contact@qngcapital.com
           </Link>
           ou via notre formulaire de contact sur
           <Link href="/">notre site</Link>.
