@@ -7,7 +7,7 @@ export const testimonials = [
   },
   {
     id: 1,
-    name: "Max",
+    name: "Olivier",
     text: "Super service ! Les formations sont très instructives et bien expliquées.",
     image: "assets/testimonial_1.jpg",
   },

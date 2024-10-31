@@ -18,7 +18,7 @@ const personalInfo = {
     "Je suis aussi passionné de sport et de culture. J'aime créer du contenu qualitatif à propos du trading et du développement personnel en général : devenir la meilleure version de soi-même.",
   skills: ["trading", "eurousd", "forex", "street workout", "coaching"],
   contact: {
-    email: "pqhl.alexandre@gmail.com",
+    email: "contact@qngcapital.com",
     telegram: "https://telegram.me/qngcapital",
     telegram_private: "https://telegram.me/alxqng",
   },
