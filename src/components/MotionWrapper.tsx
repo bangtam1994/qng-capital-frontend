@@ -19,8 +19,6 @@ const MotionWrapper: React.FC<SmoothWrapperProps> = ({
   });
 
   React.useEffect(() => {
-    console.log("InView:", inView);
-
     if (inView) {
       controls.start({ opacity: 1, y: 0 });
     } else {

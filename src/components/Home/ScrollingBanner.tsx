@@ -58,9 +58,10 @@ const BannerContainer = styled(Box)({
   display: "flex",
   overflow: "hidden",
   whiteSpace: "nowrap",
-  width: "100%",
+  width: "100vw",
   backgroundColor: theme.palette.background.paper,
   position: "relative",
+  borderTop: "1px solid grey",
 });
 
 // Styled content area that scrolls

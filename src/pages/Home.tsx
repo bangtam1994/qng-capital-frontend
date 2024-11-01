@@ -15,6 +15,7 @@ const Home: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "start",
+        // width: "100vw",
       }}
     >
       <Hero />

@@ -6,7 +6,7 @@ import Footer from "./Footer";
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
-    <Box>
+    <Box sx={{ width: "100vw" }}>
       <Header />
       <Box sx={{ width: "100%", padding: 0 }}>{children}</Box>
       <Footer />
