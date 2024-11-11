@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
-import axios from "axios";
 import { PlanType } from "../../utils/plans";
 import { CheckoutForm } from "./CheckoutForm";
 
@@ -14,24 +13,10 @@ const StripeCheckout: React.FC<{
   product: PlanType;
   onSuccess: () => void;
 }> = ({ price, priceId, onSuccess, product }) => {
-  const [clientSecret, setClientSecret] = useState("");
-
-  useEffect(() => {
-    const fetchPI = async () => {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/payment/create-payment-intent`,
-        { amount: price * 100, currency: "eur" }
-      );
-
-      setClientSecret(response.data.clientSecret);
-    };
-
-    fetchPI();
-  }, [price]);
   return (
     <>
-      {clientSecret && stripePromise && (
-        <Elements stripe={stripePromise} options={{ clientSecret }}>
+      {stripePromise && (
+        <Elements stripe={stripePromise}>
           <CheckoutForm
             price={price}
             priceId={priceId}

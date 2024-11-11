@@ -4,9 +4,10 @@ import ScrollingBanner from "../components/Home/ScrollingBanner";
 import { Box } from "@mui/material";
 import PricingPlans from "../components/Home/PricingPlan";
 import InspirationalMe from "../components/Home/InspirationalMe";
-import FAQPage from "../components/Home/FAQ";
+import FAQPage from "../components/FAQ";
 import CTANewsletter from "../components/Home/CTANewletter";
 import TestimonialsCarousel from "../components/Home/Testimonials";
+import { faqData } from "../utils/faq";
 
 const Home: React.FC = () => {
   return (
@@ -22,9 +23,10 @@ const Home: React.FC = () => {
       <ScrollingBanner />
       <PricingPlans />
       <InspirationalMe />
-      <CTANewsletter />
       <TestimonialsCarousel />
-      <FAQPage />
+      <CTANewsletter />
+
+      <FAQPage data={faqData} isHomepage />
     </Box>
   );
 };

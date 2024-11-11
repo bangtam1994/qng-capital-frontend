@@ -9,6 +9,7 @@ import EmailCTA from "../components/emailCTA/EmailCTA";
 import TestimonialsCarousel from "../components/Home/Testimonials";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../components/Button";
+import FAQPage from "../components/FAQ";
 
 const ImageContainer = styled(Box)({
   // flex: 2,
@@ -173,7 +174,9 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
               </CheckoutCard>
             </ContentContainer>
           </Box>
-
+          <Box margin={"80px 0px"}>
+            {data.faq && <FAQPage data={data.faq} />}
+          </Box>
           <TestimonialsCarousel />
         </>
       )}

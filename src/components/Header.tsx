@@ -13,17 +13,20 @@ import {
   ListItemText,
   IconButton,
 } from "@mui/material";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Logo from "../assets/QNG_logo.svg";
+
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import GradientButton from "./GradientButton";
 import CloseIcon from "@mui/icons-material/Close";
 import EbookIcon from "../assets/ebook_icon.png";
 import MeIcon from "../assets/user.png";
+import BgImage from "../assets/bg_hero.jpg";
 
 import HomeIcon from "../assets/home.png";
+import { LogoSvg } from "./LogoSvg";
 
 interface Props {
   windowProp?: () => Window;
@@ -38,7 +41,6 @@ const pagesMobile = [...pages, { name: "Accueil", to: "", icon: HomeIcon }];
 const Header: React.FC = ({ windowProp }: Props) => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const location = useLocation();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const [scrollY, setScrollY] = useState(0);
@@ -58,29 +60,6 @@ const Header: React.FC = ({ windowProp }: Props) => {
     }
   };
 
-  const interpolateColor = (scrollY: number) => {
-    const startColor = [225, 227, 234]; // RGB for theme paper background
-    const endColor = [255, 255, 255];
-
-    const progress = Math.min(scrollY / 200, 1); // Scroll range from 0 to 200px
-
-    const currentColor = startColor.map((start, i) =>
-      Math.round(start + (endColor[i] - start) * progress)
-    );
-
-    return `rgb(${currentColor.join(", ")})`;
-  };
-  const headerStyle =
-    location.pathname === "/"
-      ? {
-          backgroundColor: interpolateColor(scrollY),
-          transition: "background-color 0.3s ease",
-          boxShadow: scrollY > 10 ? "0px 2px 4px rgba(0, 0, 0, 0.1)" : "none",
-        }
-      : {
-          backgroundColor: "#FFFFFF",
-          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-        };
   const container =
     windowProp !== undefined ? () => windowProp().document.body : undefined;
 
@@ -95,13 +74,54 @@ const Header: React.FC = ({ windowProp }: Props) => {
     };
   }, []);
 
+  const imageOpacity = Math.max(1 - scrollY / 200, 0);
+  const colorOpacity = Math.min(scrollY / 200, 1);
+  const colorLayerStyle = {
+    backgroundColor: "rgb(34, 34, 34)", // Final color
+    opacity: colorOpacity,
+    transition: "opacity 0.5s ease",
+    position: "absolute" as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  };
+
+  const imageLayerStyle = {
+    backgroundImage: `url(${BgImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "top",
+    opacity: imageOpacity,
+    transition: "opacity 0.3s ease",
+    position: "absolute" as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  };
   const navigate = useNavigate();
   return (
-    <AppBar position="sticky" elevation={scrollY > 50 ? 4 : 0} sx={headerStyle}>
+    <AppBar
+      position="sticky"
+      elevation={scrollY > 50 ? 4 : 0}
+      style={{
+        top: 0,
+        overflow: "hidden",
+      }}
+    >
+      <div style={imageLayerStyle}></div>
+      <div style={colorLayerStyle}></div>
       <Toolbar>
         <Typography
           variant="h6"
-          sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+          sx={{
+            flexGrow: 1,
+            display: { xs: "none", md: "flex" },
+            "&:hover": {
+              cursor: "pointer",
+              color: theme.palette.secondary.main,
+            },
+          }}
         >
           <Link
             to="/"
@@ -111,34 +131,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
               textDecoration: "none",
             }}
           >
-            <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
-              <img
-                src={Logo}
-                alt="Logo"
-                style={{
-                  height: 80,
-                }}
-              />
-            </Box>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="#app-bar-with-responsive-menu"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                textDecoration: "none",
-                color: theme.palette.primary.main,
-                "&:hover": {
-                  color: theme.palette.secondary.main,
-                },
-              }}
-            >
-              QNG CAPITAL
-            </Typography>
+            <LogoSvg />
           </Link>
         </Typography>
         <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
@@ -166,6 +159,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
                     display: "block",
                     letterSpacing: ".2rem",
                     marginRight: "60px",
+                    color: theme.palette.primary.contrastText,
                   }}
                 >
                   {t(page.name).toUpperCase()}
@@ -216,6 +210,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
               style={{
                 height: 80,
                 cursor: "none",
+                color: "white",
               }}
             />
             <Typography
@@ -229,7 +224,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
                 fontWeight: 700,
                 letterSpacing: ".3rem",
                 textDecoration: "none",
-                color: theme.palette.primary.main,
+                color: theme.palette.primary.contrastText,
               }}
             >
               QNG CAPITAL
@@ -261,7 +256,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
                 position: "absolute",
                 top: 16,
                 right: 16,
-                color: "black",
+                color: "white",
               }}
             >
               <CloseIcon />

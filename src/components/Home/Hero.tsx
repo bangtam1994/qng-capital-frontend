@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 // import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import Video from "../../assets/hero_2.mp4";
+import PhonePic from "../../assets/2.svg";
+import BgImage from "../../assets/bg_hero.jpg";
 import theme from "../../theme/theme";
 import GradientButton from "../GradientButton";
 const Hero = () => {
@@ -37,7 +38,10 @@ const Hero = () => {
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.background.paper,
+        backgroundImage: `url(${BgImage})`,
+        // backgroundColor: theme.palette.background.paper,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         py: { md: 6 },
         width: "100%",
         display: "flex",
@@ -56,6 +60,7 @@ const Hero = () => {
           textAlign: { xs: "center", md: "start" },
           padding: { md: "150px 80px", xs: "40px 40px" },
           zIndex: 1000,
+          color: "white",
         }}
       >
         <Box
@@ -91,7 +96,7 @@ const Hero = () => {
         </Box>
         <Typography
           variant="h5"
-          color="textSecondary"
+          color={theme.palette.primary.contrastText}
           sx={{
             marginBottom: "80px",
             textAlign: { xs: "center", md: "left" },
@@ -131,9 +136,18 @@ const Hero = () => {
           width: { md: "50%" },
         }}
       >
-        <video autoPlay loop muted playsInline width="100%" height="100%">
+        <img
+          src={PhonePic}
+          style={{
+            boxSizing: "border-box",
+            objectFit: "contain",
+            width: "100%",
+            height: "110%",
+          }}
+        />
+        {/* <video autoPlay loop muted playsInline width="100%" height="100%">
           <source src={Video} type="video/mp4" />
-        </video>
+        </video> */}
       </Box>
     </Box>
   );

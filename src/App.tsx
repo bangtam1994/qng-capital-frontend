@@ -15,6 +15,8 @@ import AboutMe from "./pages/AboutMe";
 import EbookFree from "./pages/EbookFree";
 import { Toaster } from "sonner";
 
+import StripeStatusPage from "./components/Course/StripeStatusPage";
+
 // import Témoignages from "./pages/Témoignages";
 
 const App: React.FC = () => {
@@ -37,6 +39,7 @@ const App: React.FC = () => {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/payment-status" element={<StripeStatusPage />} />{" "}
             <Route
               path="smart_signals"
               element={<PlanDetail type="smart_signals" />}

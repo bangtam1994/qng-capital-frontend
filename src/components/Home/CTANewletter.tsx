@@ -6,12 +6,14 @@ import EmailCTA from "../emailCTA/EmailCTA";
 
 const CTANewsletter = () => {
   const ctaBoxStyle = {
-    background: "linear-gradient(135deg, #a1d4ca, #0db595)",
+    background:
+      "radial-gradient(circle, rgba(162,21,238,1) 0%, rgba(122,46,172,0.9836309523809523) 34%, rgba(3,86,140,1) 100%, rgba(0,107,230,1) 100%)",
     borderRadius: "20px",
     padding: "30px",
     textAlign: "center",
     color: "#fff",
     width: "100%",
+    margin: "30px 0px",
   };
 
   return (

@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import {
-  Container,
   Typography,
   Grid2,
   Card,
@@ -71,23 +70,41 @@ const PricingPlans: React.FC = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const notMainColor = "#fbfbfc";
-  const mainColor = "#0db595";
-  const backgroundColor = "#0F1832";
+  const notMainColor = "#ffffff";
+  const mainColor = theme.palette.secondary.main;
+  // const backgroundColor = "rgb(34, 34, 34)";
 
   return (
-    <Container
+    <Box
       ref={ref}
       id="pricing-section"
-      maxWidth={false}
       sx={{
         padding: "60px 0px",
-        backgroundColor: backgroundColor,
         maxWidth: { md: "100vw" },
-        width: "100vw",
-        color: "black",
+
+        position: "relative",
+        width: "100%",
+        overflow: "hidden",
       }}
     >
+      <video
+        src="https://cdn.pixabay.com/video/2021/10/06/91089-629483832_large.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "revert",
+          zIndex: -1,
+          backgroundColor: "black",
+        }}
+      />
+
       <MotionWrapper maxWidth={false}>
         <Title variant="h2" text="Nos offres du moment" />
 
@@ -104,7 +121,7 @@ const PricingPlans: React.FC = () => {
             onChange={handlePricingChange}
             aria-label="pricing option"
             sx={{ backgroundColor: "white" }}
-            color="warning"
+            color="info"
           >
             <ToggleButton
               value="monthly"
@@ -155,7 +172,7 @@ const PricingPlans: React.FC = () => {
                   //   plan.type === "smart_signals" ? mainColor : notMainColor
                   // }`,
                   backgroundColor:
-                    plan.type === "smart_signals" ? notMainColor : "100",
+                    plan.type === "smart_signals" ? notMainColor : "#d4d4d6",
                   color: "black",
                   transition:
                     "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
@@ -320,8 +337,7 @@ const PricingPlans: React.FC = () => {
           ))}
         </Grid2>
       </MotionWrapper>
-      {/* </motion.div> */}
-    </Container>
+    </Box>
   );
 };
 

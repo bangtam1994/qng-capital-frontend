@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  useStripe,
-  useElements,
-  PaymentElement,
-} from "@stripe/react-stripe-js";
+import { useStripe } from "@stripe/react-stripe-js";
 import {
   Button,
   Box,
@@ -14,88 +10,49 @@ import {
 import axios from "axios";
 import { PlanType } from "../../utils/plans";
 import { toast } from "sonner";
-import { PaymentIntent } from "@stripe/stripe-js";
 
 export const CheckoutForm: React.FC<{
   price: number;
   priceId: string;
   product: PlanType;
   onSuccess: () => void;
-}> = ({ priceId, price, onSuccess, product }) => {
+}> = ({ priceId, price, product }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
   const stripe = useStripe();
-  const elements = useElements();
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleCheckout = async (event: React.FormEvent) => {
     event.preventDefault();
+
     setLoading(true);
 
-    if (!stripe || !elements) {
-      console.error("Stripe.js has not loaded yet.");
-      setLoading(false);
-      return;
-    }
-
     try {
-      const { error: createError, paymentIntent } = await stripe.confirmPayment(
-        {
-          elements,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          //@ts-ignore
-          redirect: "if_required",
-          payment_method_data: {
-            billing_details: {
-              name: `${firstName} ${lastName}`,
-              email,
-            },
-          },
-        }
-      );
-
-      if (createError) {
-        // Handle payment errors
-        console.error("Payment failed:", createError);
-        toast.error(
-          createError.message ??
-            "Une erreur est survenue, votre paiement n'a pas été débité"
-        );
-        setLoading(false);
-        return;
-      }
-
-      // Handle successful payment
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/payment/subscription`,
+        `${import.meta.env.VITE_BACKEND_URL}/payment/create-checkout-session`,
         {
-          paymentMethod: (paymentIntent as unknown as PaymentIntent)
-            ?.payment_method,
-          firstName,
-          lastName,
           email,
           priceId,
+          firstName,
+          lastName,
           amount: price,
           product,
         }
       );
 
-      if (response.status === 201) {
-        setLoading(false);
-        onSuccess();
-        toast.success(
-          "Le paiement a bien été effectué ! Merci pour votre achat.",
-          {
-            style: {
-              backgroundColor: "#008042",
-              color: "#FFFFFF",
-            },
-          }
-        );
-      } else {
-        throw new Error(response.data);
+      const sessionId = response.data.sessionId;
+
+      if (stripe) {
+        const { error } = await stripe.redirectToCheckout({
+          sessionId,
+        });
+
+        if (error) {
+          console.error(error);
+          alert("Payment failed. Please try again.");
+        }
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -111,6 +68,7 @@ export const CheckoutForm: React.FC<{
       setLoading(false);
     }
   };
+
   return (
     <>
       <Box
@@ -118,7 +76,7 @@ export const CheckoutForm: React.FC<{
         sx={{
           marginTop: "22px",
         }}
-        onSubmit={handleSubmit}
+        onSubmit={handleCheckout}
       >
         <Box
           sx={{
@@ -128,8 +86,6 @@ export const CheckoutForm: React.FC<{
             gap: 2,
           }}
         >
-          <PaymentElement />
-          {/* <CardElement /> */}
           <TextField
             label="Email"
             variant="outlined"
@@ -166,12 +122,12 @@ export const CheckoutForm: React.FC<{
             {loading ? (
               <CircularProgress size={24} />
             ) : (
-              <span>Payer {price.toFixed(2)} €</span>
+              <span>Accéder à la page de paiement</span>
             )}
           </Button>
           {loading && (
             <Typography variant="caption">
-              Le paiement est en cours, veuillez patienter ...
+              Chagement en cours, euillez patienter ...
             </Typography>
           )}
         </Box>

@@ -255,9 +255,7 @@ const EbookFree: React.FC = () => {
         </MotionWrapper>
       </Box>
       <Box sx={{ width: "100vw" }}>
-        <MotionWrapper>
-          <InspirationalMe />
-        </MotionWrapper>
+        <InspirationalMe />
         <MotionWrapper>
           <TestimonialsCarousel />
         </MotionWrapper>

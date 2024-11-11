@@ -33,6 +33,7 @@ const MotionWrapper: React.FC<SmoothWrapperProps> = ({
       sx={{
         color: "black",
         padding: { xs: "15px", md: "80px 0px" },
+        border: "0px solid",
       }}
     >
       <motion.div
