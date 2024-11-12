@@ -26,7 +26,7 @@ const StyledButton = styled(Button)<{ buttonType: "primary" | "secondary" }>(
     "&:hover": {
       backgroundColor:
         buttonType === "primary"
-          ? theme.palette.primary.dark
+          ? theme.palette.primary.light
           : theme.palette.secondary.dark,
     },
     ":focus": {

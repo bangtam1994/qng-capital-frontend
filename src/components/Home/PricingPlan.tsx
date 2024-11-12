@@ -311,6 +311,7 @@ const PricingPlans: React.FC = () => {
                     buttonType="secondary"
                     variant="outlined"
                     disabled={!plan.active}
+                    onClick={() => navigate(`/${plan.type}`)}
                     sx={{
                       color:
                         plan.type === "smart_signals"

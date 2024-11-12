@@ -16,7 +16,7 @@ const StyledButton = styled(Button)(({ theme }) => ({
   fontSize: theme.typography.button.fontSize,
   padding: "12px 30px",
   backgroundImage:
-    "linear-gradient(90deg, rgba(162,21,238,1) 0%, rgba(122,46,172,0.9836309523809523) 37%, rgba(31,161,246,1) 75%, rgba(225,232,240,1) 100%)",
+    "linear-gradient(90deg, rgba(162,21,238,1) 0%, rgba(122,12,194,0.9836309523809523) 25%, rgba(26,81,177,1) 61%, rgba(0,146,173,1) 100%, rgba(3,86,140,1) 100%);",
   backgroundSize: "200% 100%",
   backgroundPosition: "0% 0%",
   transition: "background-position 0.5s ease-in-out",

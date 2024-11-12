@@ -11,13 +11,13 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MotionWrapper from "./MotionWrapper";
 import Title from "./Title";
+import theme from "../theme/theme";
 
 export const GradientAccordion = styled(Accordion)<{
   isFirst?: boolean;
   isLast?: boolean;
 }>(() => ({
-  background:
-    "radial-gradient(circle, rgba(201,102,255,1) 0%, rgba(139,40,204,0.9836309523809523) 31%, rgba(3,86,140,1) 100%, rgba(0,107,230,1) 100%)",
+  background: theme.palette.primary.main,
   borderRadius: "5px",
   border: "none",
   transition: "background-color 0.3s ease",
@@ -99,7 +99,7 @@ const FAQPage = ({ data, isHomepage = false }: FAQProps) => {
           {data.map((faq, index) => (
             <GradientAccordion key={index} isFirst={index === 0}>
               <GradientAccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon color="secondary" />}
                 aria-controls={`panel${index + 1}-content`}
                 id={`panel${index + 1}-header`}
               >

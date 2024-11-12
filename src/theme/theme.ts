@@ -9,7 +9,7 @@ const theme = createTheme({
       contrastText: "#ffffff",
     },
     secondary: {
-      light: "#a7e8d5",
+      light: "#c465f7",
       main: "#a215ee",
       dark: "#7a2eac",
       contrastText: "#e0f3f2",
@@ -22,7 +22,12 @@ const theme = createTheme({
   },
 
   typography: {
-    fontFamily: ["Raleway", "Inter", "Plus Jakarta Sans"].join(","),
+    fontFamily: [
+      "Plus Jakarta Sans",
+      "Raleway",
+      "Inter",
+      "Plus Jakarta Sans",
+    ].join(","),
     allVariants: {
       fontFamily: "Raleway",
       textTransform: "none",

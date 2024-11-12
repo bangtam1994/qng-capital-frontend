@@ -83,7 +83,10 @@ const EmailCTA = ({
         variant="contained"
         color="primary"
         onClick={handleOpen}
-        sx={{ mt: 2, width: "fit-content" }}
+        sx={{
+          mt: 2,
+          width: "fit-content",
+        }}
       >
         {buttonTitle}
       </CustomButton>

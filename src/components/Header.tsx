@@ -192,7 +192,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
               left: 40,
               top: 20,
             }}
-            color="primary"
+            color="inherit"
           >
             <MenuIcon />
           </IconButton>
@@ -246,7 +246,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
                 boxSizing: "border-box",
                 width: "100%",
                 padding: "0px 30px",
-                backgroundColor: "white",
+                backgroundColor: "wh",
               },
             }}
           >
@@ -256,7 +256,7 @@ const Header: React.FC = ({ windowProp }: Props) => {
                 position: "absolute",
                 top: 16,
                 right: 16,
-                color: "white",
+                color: "black",
               }}
             >
               <CloseIcon />
