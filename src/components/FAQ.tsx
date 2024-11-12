@@ -11,24 +11,26 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MotionWrapper from "./MotionWrapper";
 import Title from "./Title";
-import theme from "../theme/theme";
 
-export const GradientAccordion = styled(Accordion)<{
-  isFirst?: boolean;
-  isLast?: boolean;
-}>(() => ({
-  background: theme.palette.primary.main,
-  borderRadius: "5px",
-  border: "none",
-  transition: "background-color 0.3s ease",
+export const GradientAccordion = styled(Accordion, {
+  shouldForwardProp: (prop) =>
+    prop !== "isHomepage" && prop !== "isFirst" && prop !== "isLast",
+})<{ isFirst?: boolean; isLast?: boolean; isHomepage?: boolean }>(
+  ({ theme, isHomepage }) => ({
+    backgroundColor: isHomepage ? theme.palette.primary.contrastText : "black",
+    color: isHomepage ? "black" : theme.palette.secondary.contrastText,
+    borderRadius: "5px",
+    border: "none",
+    transition: "background-color 0.3s ease",
 
-  "&:before": {
-    display: "none",
-  },
-  "& + &": {
-    marginTop: "3rem",
-  },
-}));
+    "&:before": {
+      display: "none",
+    },
+    "& + &": {
+      marginTop: "3rem",
+    },
+  })
+);
 
 export const GradientAccordionSummary = styled(AccordionSummary)(
   ({ expanded }: { expanded?: boolean }) => ({
@@ -41,10 +43,12 @@ export const GradientAccordionSummary = styled(AccordionSummary)(
   })
 );
 
-export const TitleTypography = styled(Typography)(
-  ({ expanded }: { expanded?: boolean }) => ({
-    color: expanded ? "transparent" : "white",
-    background: expanded ? "#0F1832" : "none",
+export const TitleTypography = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "isHomepage" && prop !== "expanded",
+})<{ expanded?: boolean; isHomepage?: boolean }>(
+  ({ expanded, isHomepage }) => ({
+    color: expanded ? "transparent" : isHomepage ? "black" : "white",
+    background: expanded ? (isHomepage ? "#0F1832" : "black") : "none",
     WebkitBackgroundClip: expanded ? "text" : "none",
     backgroundClip: expanded ? "text" : "none",
     transition: "color 0.3s ease, background 0.3s ease",
@@ -58,6 +62,7 @@ interface FAQProps {
 }
 
 const FAQPage = ({ data, isHomepage = false }: FAQProps) => {
+  console.log("is>>", isHomepage);
   return (
     <Box
       sx={{
@@ -97,13 +102,17 @@ const FAQPage = ({ data, isHomepage = false }: FAQProps) => {
 
         <Box margin={"80px 0px"}>
           {data.map((faq, index) => (
-            <GradientAccordion key={index} isFirst={index === 0}>
+            <GradientAccordion
+              key={index}
+              isFirst={index === 0}
+              isHomepage={isHomepage}
+            >
               <GradientAccordionSummary
                 expandIcon={<ExpandMoreIcon color="secondary" />}
                 aria-controls={`panel${index + 1}-content`}
                 id={`panel${index + 1}-header`}
               >
-                <TitleTypography expanded={false}>
+                <TitleTypography expanded={false} isHomepage={isHomepage}>
                   {faq.question}
                 </TitleTypography>
               </GradientAccordionSummary>

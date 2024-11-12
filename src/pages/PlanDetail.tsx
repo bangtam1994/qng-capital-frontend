@@ -175,7 +175,7 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
             </ContentContainer>
           </Box>
           <Box margin={"80px 0px"}>
-            {data.faq && <FAQPage data={data.faq} />}
+            {data.faq && <FAQPage data={data.faq} isHomepage={false} />}
           </Box>
           <TestimonialsCarousel />
         </>
