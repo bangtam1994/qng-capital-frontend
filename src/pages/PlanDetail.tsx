@@ -190,13 +190,13 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
                     }}
                   >
                     <span>
-                      Offre disponible très prochainement, inscrivez-vous sur la
+                      Offre disponible très prochainement, inscris-toi sur la
                       liste d'attente pour ne pas manquer sa sortie !
                     </span>
                     <EmailCTA
                       buttonTitle="S'abonner"
                       modalTitle="Place VIP pour les abonnés"
-                      modalCaption="La formation QNG Trading Academy et Elite Performance sortira en avant première pour les abonnés."
+                      modalCaption="La formation QNG Trading Academy sortira en avant première pour les abonnés."
                       from={`page: ${data.name}`}
                     />
                   </Box>
