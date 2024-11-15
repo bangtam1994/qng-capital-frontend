@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Typography, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import StripeCheckout from "../components/Course/Checkout";
-import { Plan, plans } from "../utils/plans";
+import { Plan, plans, PlanType } from "../utils/plans";
 import theme from "../theme/theme";
 import Title from "../components/Title";
 import EmailCTA from "../components/emailCTA/EmailCTA";
@@ -10,6 +10,7 @@ import TestimonialsCarousel from "../components/Home/Testimonials";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../components/Button";
 import FAQPage from "../components/FAQ";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const ImageContainer = styled(Box)({
   // flex: 2,
@@ -100,20 +101,27 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
                 {data.description}
               </Typography>
               {data.details?.features.map((feature, i) => {
-                const emoji = feature.substring(0, 2);
-                const text = feature.substring(2);
-
                 return (
-                  <Box mt={0.7} key={i}>
-                    <Typography
-                      variant="h6"
-                      component="span"
-                      style={{ marginRight: "16px" }}
-                    >
-                      {emoji}
-                    </Typography>
+                  <Box
+                    mt={0.7}
+                    key={i}
+                    sx={{
+                      paddingLeft: 0,
+                      display: "flex",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <CheckCircleIcon
+                      sx={{
+                        color: theme.palette.secondary.dark,
+                        marginRight: 1,
+                        fontSize: 20,
+                        marginTop: "6px",
+                      }}
+                    />
+
                     <Typography variant="body1" component="span">
-                      {text}
+                      {feature}
                     </Typography>
                   </Box>
                 );
@@ -121,7 +129,29 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
               <CheckoutCard>
                 {data.active ? (
                   <>
-                    {!paymentSucess ? (
+                    {data.type === PlanType.ELITE_PERFORMANCE ? (
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Typography variant="h3" gutterBottom>
+                          Organiser un rendez-vous
+                        </Typography>
+                        <span>
+                          Inscris-toi pour un plan de mentorat et coaching
+                          personnalisé.
+                        </span>
+                        <EmailCTA
+                          buttonTitle="Inscription"
+                          modalTitle="Inscription à Elite Performance"
+                          modalCaption="Renseigne ton email afin que je puisse te contacter et découvrir avec toi ton projet trading."
+                          from={`page: ${data.name}`}
+                        />
+                      </Box>
+                    ) : !paymentSucess ? (
                       <>
                         <Typography variant="h6" gutterBottom>
                           Prêts à devenir des traders confirmés ?

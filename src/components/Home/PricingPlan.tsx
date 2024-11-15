@@ -17,7 +17,7 @@ import { motion, useAnimation } from "framer-motion";
 import theme from "../../theme/theme";
 import MotionWrapper from "../MotionWrapper";
 import Title from "../Title";
-
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 const PricingPlans: React.FC = () => {
   const [pricingOption, setPricingOption] = useState<"monthly" | "annual">(
     "monthly"
@@ -288,13 +288,22 @@ const PricingPlans: React.FC = () => {
 
                     <List sx={{ marginTop: 2, marginBottom: 2 }}>
                       {plan.features.map((feature, index) => (
-                        <Box key={index} sx={{ paddingLeft: 0 }}>
-                          {/* <CheckCircleIcon
+                        <Box
+                          key={index}
+                          sx={{
+                            paddingLeft: 0,
+                            display: "flex",
+                            marginBottom: "3px",
+                          }}
+                        >
+                          <CheckCircleIcon
                             sx={{
                               color: mainColor,
                               marginRight: 1,
+                              fontSize: 20,
+                              marginTop: "2px",
                             }}
-                          /> */}
+                          />
 
                           <Typography
                             textAlign="left"
@@ -324,7 +333,7 @@ const PricingPlans: React.FC = () => {
                       border:
                         plan.type === "smart_signals"
                           ? "none"
-                          : `2px solid ${mainColor}`,
+                          : `2px solid ${theme.palette.secondary.dark}`,
                       fontWeight: 700,
                     }}
                   >

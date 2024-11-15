@@ -167,7 +167,7 @@ const EmailCTA = ({
                   disabled={loading}
                   type="submit"
                 >
-                  S'abonner
+                  {buttonTitle}
                 </Button>
               </form>
             </>

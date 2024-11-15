@@ -62,7 +62,6 @@ interface FAQProps {
 }
 
 const FAQPage = ({ data, isHomepage = false }: FAQProps) => {
-  console.log("is>>", isHomepage);
   return (
     <Box
       sx={{

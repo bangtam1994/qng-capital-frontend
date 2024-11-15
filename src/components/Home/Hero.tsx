@@ -100,7 +100,7 @@ const Hero = () => {
           sx={{
             marginBottom: "80px",
             textAlign: { xs: "center", md: "left" },
-            fontSize: { xs: 18, md: 25 },
+            fontSize: { xs: 15, md: 25 },
             width: "100%",
           }}
         >
