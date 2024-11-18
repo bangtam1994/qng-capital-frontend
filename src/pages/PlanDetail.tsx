@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import CustomButton from "../components/Button";
 import FAQPage from "../components/FAQ";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Calendly from "../components/Calendly";
 
 const ImageContainer = styled(Box)({
   // flex: 2,
@@ -45,7 +46,6 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
     setData(planData);
     setPrice(planData?.monthlyPrice);
   }, [type]);
-
   return (
     <Container>
       {!data ? (
@@ -92,6 +92,25 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
                   <span style={{ fontSize: "18px" }}>par mois</span>
                 </Typography>
               )}
+              {data.type === PlanType.ELITE_PERFORMANCE && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    textAlign: "center",
+                    gap: "20px",
+                  }}
+                >
+                  <Typography variant="h3">Organiser un rendez-vous</Typography>
+                  <span>
+                    Réserve un créneau pour un call gratuit, afin de construire
+                    ton plan de mentorat personnalisé.
+                  </span>
+
+                  <Calendly url="https://calendly.com/qngcapital/30min" />
+                </Box>
+              )}
               <Typography
                 fontWeight={700}
                 color={theme.palette.secondary.main}
@@ -126,32 +145,10 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
                   </Box>
                 );
               })}
-              <CheckoutCard>
-                {data.active ? (
-                  <>
-                    {data.type === PlanType.ELITE_PERFORMANCE ? (
-                      <Box
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Typography variant="h3" gutterBottom>
-                          Organiser un rendez-vous
-                        </Typography>
-                        <span>
-                          Inscris-toi pour un plan de mentorat et coaching
-                          personnalisé.
-                        </span>
-                        <EmailCTA
-                          buttonTitle="Inscription"
-                          modalTitle="Inscription à Elite Performance"
-                          modalCaption="Renseigne ton email afin que je puisse te contacter et découvrir avec toi ton projet trading."
-                          from={`page: ${data.name}`}
-                        />
-                      </Box>
-                    ) : !paymentSucess ? (
+              {data.type !== PlanType.ELITE_PERFORMANCE && (
+                <CheckoutCard>
+                  {data.active ? (
+                    !paymentSucess ? (
                       <>
                         <Typography variant="h6" gutterBottom>
                           Prêts à devenir des traders confirmés ?
@@ -179,29 +176,29 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
                           Retour à l'accueil
                         </CustomButton>
                       </Box>
-                    )}
-                  </>
-                ) : (
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    <span>
-                      Offre disponible très prochainement, inscris-toi sur la
-                      liste d'attente pour ne pas manquer sa sortie !
-                    </span>
-                    <EmailCTA
-                      buttonTitle="S'abonner"
-                      modalTitle="Place VIP pour les abonnés"
-                      modalCaption="La formation QNG Trading Academy sortira en avant première pour les abonnés."
-                      from={`page: ${data.name}`}
-                    />
-                  </Box>
-                )}
-              </CheckoutCard>
+                    )
+                  ) : (
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
+                      <span>
+                        Offre disponible très prochainement, inscris-toi sur la
+                        liste d'attente pour ne pas manquer sa sortie !
+                      </span>
+                      <EmailCTA
+                        buttonTitle="S'abonner"
+                        modalTitle="Place VIP pour les abonnés"
+                        modalCaption="La formation QNG Trading Academy sortira en avant première pour les abonnés."
+                        from={`page: ${data.name}`}
+                      />
+                    </Box>
+                  )}
+                </CheckoutCard>
+              )}
             </ContentContainer>
           </Box>
           <Box margin={"80px 0px"}>
