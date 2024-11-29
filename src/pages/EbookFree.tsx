@@ -64,29 +64,34 @@ const EbookFree: React.FC = () => {
     <>
       <Box sx={{ backgroundColor: "white", width: "100vw" }}>
         <MotionWrapper>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              gap: 2,
+            }}
+          >
             <Typography
               variant="h1"
               align="center"
               gutterBottom
               my={1}
               lineHeight={1.5}
+              sx={{
+                color: "white",
+                background:
+                  "radial-gradient(circle, rgba(97,97,97,1) 0%, rgba(1,30,47,1) 84%, rgba(0,0,0,1) 100%)",
+                padding: "0.2em 50px",
+                width: "fit-content",
+                borderRadius: "18px",
+              }}
             >
               <span style={{ display: "block", marginBottom: "12px" }}>
                 REÇOIS TON E-BOOK{" "}
                 <span style={{ textDecoration: "underline" }}>GRATUIT</span>
               </span>
-              <Typography
-                variant="h3"
-                sx={{
-                  textDecoration: "underline",
-                  color: "white",
-                  backgroundColor: theme.palette.secondary.main,
-                  padding: "0.2em",
-                }}
-              >
-                Supply And Demand 🎁
-              </Typography>
+              <Typography variant="h3">Supply And Demand</Typography>
             </Typography>
             <Box
               sx={{
@@ -256,9 +261,7 @@ const EbookFree: React.FC = () => {
       </Box>
       <Box sx={{ width: "100vw" }}>
         <InspirationalMe />
-        <MotionWrapper>
-          <TestimonialsCarousel />
-        </MotionWrapper>
+        <TestimonialsCarousel />
       </Box>
     </>
   );

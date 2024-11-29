@@ -81,7 +81,6 @@ const PricingPlans: React.FC = () => {
       sx={{
         padding: "60px 0px",
         maxWidth: { md: "100vw" },
-
         position: "relative",
         width: "100%",
         overflow: "hidden",
