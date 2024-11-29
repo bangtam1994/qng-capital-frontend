@@ -1,13 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Box, Modal, Fade, Backdrop } from "@mui/material";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+
 import { testimonials } from "../../utils/testimonials";
 import MotionWrapper from "../MotionWrapper";
 import Background from "../../assets/background_trading_3.png";
 import Title from "../Title";
 import Slider from "react-slick";
+
 const TestimonialsBanner = () => {
   const [openModal, setOpenModal] = useState(false);
   const [activeImage, setActiveImage] = useState<string | null>(null);
