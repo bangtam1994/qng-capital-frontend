@@ -55,7 +55,7 @@ const PlanDetail: React.FC<{ type: string }> = ({ type }) => {
         position: "relative",
         width: "100%",
         overflow: "hidden",
-        backgroundColor: "rgb(34, 34, 34)",
+        // backgroundColor: "rgb(34, 34, 34)",
         color: theme.palette.secondary.contrastText,
       }}
     >
