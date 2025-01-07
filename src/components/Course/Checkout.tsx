@@ -13,7 +13,6 @@ const StripeCheckout: React.FC<{
   product: PlanType;
   onSuccess: () => void;
 }> = ({ price, priceId, onSuccess, product }) => {
-  console.log("price", priceId);
   return (
     <>
       {stripePromise && (
