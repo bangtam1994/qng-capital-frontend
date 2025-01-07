@@ -127,7 +127,7 @@ export const CheckoutForm: React.FC<{
           </Button>
           {loading && (
             <Typography variant="caption">
-              Chagement en cours, euillez patienter ...
+              Chargement en cours, veuillez patienter ...
             </Typography>
           )}
         </Box>

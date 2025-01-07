@@ -29,23 +29,19 @@ const SuccessPage: React.FC = () => {
   const statusPage = searchParams.get("status");
   const productPage = searchParams.get("product");
   const navigate = useNavigate();
-  console.log("statusPage", statusPage);
   useEffect(() => {
     const fetchSessionDetails = async () => {
       if (statusPage === "success" && sessionId) {
         try {
-          // Request the backend to retrieve the Checkout session
           const response = await axios.post(
             `${
               import.meta.env.VITE_BACKEND_URL
             }/payment/checkout-session-details`,
             { sessionId }
           );
-          console.log(">>>>>>>>>", response.data);
           if (response.data) {
             setData(response.data);
           }
-          // Process the response from your backend (e.g., show payment statusPage)
         } catch (error) {
           console.error("Error fetching session details:", error);
         } finally {
